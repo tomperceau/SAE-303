@@ -1,86 +1,126 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SAé3.Crea.03 - gsap</title>
+    <title>SAé3.Crea.03 - L'Odyssée du Travailleur</title>
   </head>
   <body>
-    <div class="main">
+    <div id="app">
+
       <header>
-        <h1>Cours GSAP v3 - Les Bases</h1>
+        <div class="badge">L'ODYSSÉE DU TRAVAILLEUR</div>
+        <p class="subtitle">Du champ au bureau : l'évolution de nos habitudes avec Marc.</p>
+        <div class="mascot-container">
+          <img src="https://placehold.co/150x150/2A1A36/FFBF02?text=Marc+Mascotte" alt="Mascotte Marc" class="mascot">
+        </div>
+        <h1>L'histoire du travail à travers les âges</h1>
       </header>
-      <main class="main">
-        <section class="sec1">
-          <h2>1. Tween de base</h2>
-          <div class="container">
-            <h3>gsap.to()</h3>
-            <p>Déplace l'élément VERS les valeurs définies.</p>
-            <div class="box box--a box--to">to</div>
+
+      <main class="timeline">
+
+        <section class="timeline-row theme-rose">
+          <div class="content-text slide-from-left">
+            <h2>Moyen Âge</h2>
+            <p class="highlight">9 personnes sur 10</p>
+            <p>travaillent dans les champs. Peu de gens ont les connaissances pour lire ou écrire.</p>
           </div>
-          <div class="container">
-            <h3>gsap.from()</h3>
-            <p>
-              Déplace l'élément DEPUIS les valeurs définies vers sa position
-              actuelle.
-            </p>
-            <div class="box box--b box--from">from</div>
-          </div>
-          <div class="container">
-            <h3>gsap.fromTo()</h3>
-            <p>Définit à la fois les valeurs de DÉPART et de FIN.</p>
-            <div class="box box--b box--from-to">from-to</div>
-          </div>
-        </section>
-        <section class="sec1">
-          <h2>2. Timelines</h2>
-          <p>Enchaîner des animations facilement.</p>
-          <div class="box box--a box--timeline">Timeline</div>
-        </section>
-        <section class="sec1">
-          <h2>3. Staggers (Décalages)</h2>
-          <p>Animer plusieurs éléments avec un décalage.</p>
-          <div class="container">
-            <div class="box box--a box--stagger">1</div>
-            <div class="box box--b box--stagger">2</div>
-            <div class="box box--c box--stagger">3</div>
+          <div class="timeline-marker"></div>
+          <div class="content-img slide-from-right">
+            <div id="container-svg-champ"></div>
           </div>
         </section>
 
-        <section class="sec1">
-          <h2>4. Contrôles</h2>
-          <p>Contrôler la lecture de l'animation.</p>
-          <div class="box box--c box--control">Control</div>
-          <div class="controls">
-            <button id="play">Play</button>
-            <button id="pause">Pause</button>
-            <button id="reverse">Reverse</button>
-            <button id="restart">Restart</button>
+        <section class="timeline-row reverse theme-bleu">
+          <div class="content-img slide-from-left">
+             <div id="container-svg-usine"></div>
+          </div>
+          <div class="timeline-marker"></div>
+          <div class="content-text slide-from-right">
+            <h2>Révolution industrielle</h2>
+            <p class="highlight">Des centaines de nouveaux métiers</p>
+            <p>apparaissent, de moins en moins manuels. De plus en plus de personnes dans les bureaux.</p>
           </div>
         </section>
 
-        <section class="sec1">
-          <h2>5. ScrollTrigger</h2>
-          <div class="container">
-            <div class="box box--a box--s-trig"></div>
-            <div class="box box--b box--s-trig"></div>
-          </div>
-        </section>
+      </main> 
 
-        <section class="sec1">
-          <h2>6. matchMedia (Responsive)</h2>
-          <p>
-            Animation uniquement sur desktop (> 768px). Redimensionnez la
-            fenêtre pour tester.
-          </p>
-          <div class="box box--a box--matchmedia">Desktop only</div>
-        </section>
-      </main>
+
+      <div class="horizontal-scroll-wrapper">
+        <div class="horizontal-container">
+          
+          <section class="panel theme-jaune modern-panel">
+            <div class="timeline-row-simulate">
+                <div class="content-text slide-from-left">
+                    <h2>Époque moderne</h2>
+                    <p class="highlight">En 2020</p>
+                    <p>La pandémie bouscule les codes du monde du travail. Télétravail et nouvelles habitudes.</p>
+                </div>
+                
+                <div class="timeline-marker"></div>
+
+                <div class="content-img slide-from-right">
+                    <div id="container-svg-moderne"></div>
+                </div>
+            </div>
+          </section>
+
+          <section class="panel transition-panel">
+            <div class="transition-content">
+                <h2>Les bons gestes pour moins polluer au travail avec Marc</h2>
+                <div class="scroll-indicator">↓</div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+
+      <section class="transport-section">
+          <h2 class="section-title">Le trajet domicile-travail</h2>
+
+          <div class="transport-visual">
+             <div class="road-scroller">
+                 <div id="road-1" class="road-tile"></div>
+                 <div id="road-2" class="road-tile"></div>
+             </div>
+
+             <div class="vehicles-container">
+                 <div id="container-svg-voiture" class="vehicle-car"></div>
+                 <div id="container-svg-velo" class="vehicle-bike"></div>
+             </div>
+          </div>
+
+          <div class="stats-container">
+            <div class="stat-box slide-up">
+               <h3 class="text-rose">En voiture</h3>
+               <p>Comme <strong>72%</strong> des personnes, Marc utilise un moyen de transport motorisé, sa voiture.</p>
+            </div>
+            <div class="stat-box slide-up">
+               <h3 class="text-vert">À vélo</h3>
+               <p>Seulement <strong>2,3%</strong> utilisent le vélo, alors que le potentiel est immense !</p>
+            </div>
+          </div>
+
+          <div class="info-box slide-up">
+             <div class="info-content">
+               <h4>Le saviez-vous ?</h4>
+               <p>La moitié des trajets effectués en France font moins de 5 kilomètres. Le trafic des voitures représente <span class="text-rose">16% des émissions totales !</span></p>
+             </div>
+             
+             <div class="info-mascot">
+               <div id="container-svg-marc"></div>
+             </div>
+
+             <div class="info-content">
+               <p>Et si Marc prenait le vélo de temps-en-temps ? En habitant à moins de 5 km, il pourrait <span class="text-vert">réduire ses émissions</span> de CO2 et faire <span class="text-vert">un peu d'exercice !</span></p>
+             </div>
+          </div>
+      </section>
+
+
     </div>
-    <div class="line"></div>
-
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

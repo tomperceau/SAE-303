@@ -1,109 +1,246 @@
-:root {
-  --font-family: "Inter", sans-serif;
-  --color-white: #ffffff;
-  --color-background: #1f1f1f;
-  --color-accent-1: #f1c40f;
-  --color-accent-2: #e74c3c;
-  --color-accent-3: #3498db;
-  --color-accent-4: #2ecc71;
-  --color-accent-5: #9b59b6;
-}
+/* 1. IMPORT UNIQUEMENT MUSEOMODERNO */
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+:root {
+  --rose-marker:   #E30079;
+  --bleu-marker:   #45B7FF;
+  --jaune-accent:  #FFBF02;
+  --violet-badge:  #6200AC;
+  --violet-clair:  #6904d4;
+  --text-main:     #DDD9D6;
+  --bg-color:      #2A1A36;
+  --creme-light:   #F5F3A9;
+  --vert-eco:      #00D059;
+  --font-main: 'MuseoModerno', sans-serif;
 }
 
 body {
-  min-height: 100vh;
-  font-family: "Inter", sans-serif;
-  color: #fff;
-  background-color: #1f1f1f;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.07) 2px,
-      transparent 2px
-    ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 2px, transparent 2px),
-    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  margin: 0; padding: 0;
+  background-color: var(--bg-color); color: var(--text-main);
+  font-family: var(--font-main); font-weight: 300; font-size: 1.1rem;
+  overflow-x: hidden; line-height: 1.5;
 }
 
 header {
+  text-align: center; padding: 0 1rem;
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  box-sizing: border-box;
+}
+
+.badge {
+  background-color: var(--violet-badge); color: var(--jaune-accent);
+  display: inline-block; padding: 1rem 2rem; border-radius: 15px;
+  font-size: 2rem; font-weight: 900; text-transform: uppercase;
+  margin-bottom: 1rem; box-shadow: 0 4px 0px #3e006f;
+}
+
+.subtitle { font-size: 1.3rem; margin-bottom: 2rem; font-weight: 500; }
+.mascot-container img { width: 120px; height: auto; }
+h1 { color: var(--jaune-accent); margin-top: 2rem; font-size: 2.5rem; font-weight: 700; text-transform: uppercase; line-height: 1.1; }
+
+/* TIMELINE VERTICALE */
+.timeline { position: relative; max-width: 1000px; margin: 0 auto; padding: 0; }
+.timeline::before {
+  content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 100%;
+  background-image: linear-gradient(to bottom, var(--text-main) 30%, transparent 30%);
+  background-size: 4px 20px; opacity: 0.3; top: 0; z-index: 0;
+}
+
+.timeline-row {
+  display: flex; justify-content: space-between; align-items: center;
+  min-height: 100vh; margin-bottom: 0; padding: 2rem 0;
+  position: relative; z-index: 1; box-sizing: border-box;
+}
+
+.content-text, .content-img { width: 42%; }
+.content-img img, .content-img svg {
+  width: 100%; max-height: 350px; height: auto;
+  display: block; margin: 0 auto; border-radius: 10px; box-shadow: none;
+}
+.content-img svg { background-color: transparent; }
+.content-text { text-align: right; }
+.content-text h2 { font-size: 2.5rem; margin-bottom: 0.5rem; font-weight: 700; color: var(--creme-light); }
+.content-text .highlight { color: var(--text-main); font-weight: 600; font-size: 1.4rem; margin-bottom: 0.5rem; display: block; }
+.content-text p { font-weight: 300; font-size: 1.2rem; }
+
+.timeline-marker {
+  width: 50px; height: 50px; border-radius: 15px; border: 10px solid; 
+  background-color: var(--bg-color); z-index: 2; box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.timeline-row.theme-rose .timeline-marker { border-color: var(--rose-marker); }
+.timeline-row.theme-rose h2 { color: var(--creme-light); }
+.timeline-row.reverse { flex-direction: row-reverse; }
+.timeline-row.reverse .content-text { text-align: left; }
+.timeline-row.theme-bleu .timeline-marker { border-color: var(--bleu-marker); }
+
+
+/* --- SCROLL HORIZONTAL --- */
+.horizontal-scroll-wrapper {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; 
+}
+
+.horizontal-container {
+  display: flex;
+  width: 200%;
+  height: 100%;
+}
+
+.panel {
+  width: 50%; 
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
-  h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    margin: 7.75rem auto;
-  }
+  box-sizing: border-box;
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-
-  margin-inline: 50px;
-  height: 4000px;
+/* --- RECONSTRUCTION DE LA TIMELINE DANS LE PANEL --- */
+.modern-panel {
+  position: relative; /* Nécessaire pour la ligne pointillée */
 }
 
-.sec1 {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-bottom: 10rem;
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
+/* La ligne pointillée spécifique à ce panneau */
+.modern-panel::before {
+  content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 100%;
+  background-image: linear-gradient(to bottom, var(--text-main) 30%, transparent 30%);
+  background-size: 4px 20px; opacity: 0.3; top: 0; z-index: 0;
 }
 
-.box {
+/* Le conteneur qui imite .timeline-row */
+.timeline-row-simulate {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  font-size: 1.25rem;
-  font-weight: 700;
-  width: 100px;
-  aspect-ratio: 1/1;
-  background-color: white;
-  border-radius: 10%;
+  width: 100%;
+  max-width: 1000px;
+  position: relative;
+  z-index: 1;
 }
 
-.box--a {
-  background-color: #f1c40f;
+/* Style du texte dans le panel moderne */
+.timeline-row-simulate .content-text { text-align: right; }
+.timeline-row-simulate h2 { color: var(--jaune-accent); font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+.timeline-row-simulate .highlight { color: var(--text-main); font-weight: 600; font-size: 1.4rem; margin-bottom: 0.5rem; display: block; }
+
+/* Couleur du marqueur moderne */
+.modern-panel .timeline-marker { border-color: var(--jaune-accent); }
+
+
+/* --- PANEL TRANSITION --- */
+.transition-panel {
+  background-color: var(--violet-clair);
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
 }
 
-.box--b {
-  background-color: #e74c3c;
+.transition-content h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #fff;
 }
 
-.box--c {
-  background-color: #3498db;
+.scroll-indicator {
+  margin-top: 2rem;
+  font-size: 3rem;
+  animation: bounce 2s infinite;
 }
 
-.box--d {
-  background-color: #2ecc71;
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-15px);}
+  60% {transform: translateY(-7px);}
 }
 
-.box--e {
-  background-color: #9b59b6;
+
+/* --- SECTION TRANSPORT --- */
+.transport-section {
+  padding: 2rem 0; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; overflow-x: hidden; 
+}
+.section-title, .stats-container, .info-box {
+  max-width: 1100px; width: 90%; margin-left: auto; margin-right: auto;
+}
+.section-title {
+  text-align: center; color: var(--jaune-accent); font-size: 2.5rem; font-weight: 700;
+  margin-bottom: 1.5rem; text-transform: uppercase;
 }
 
-.line {
-  width: 2px;
-  height: 4000px;
-  position: absolute;
-  right: 100px;
-  top: 0px;
-  background-color: #777;
+/* ZONE ROUTE */
+.transport-visual {
+  position: relative; width: 100vw; height: 130px; margin-bottom: 1.5rem; overflow: hidden; 
+}
+.road-scroller {
+  display: flex; width: 200vw; height: 100%; position: absolute; bottom: 0; left: 0;
+  font-size: 0; line-height: 0;
+}
+.road-tile {
+  width: 100vw; height: 100%; margin: 0; padding: 0; overflow: visible;
+}
+.road-tile svg {
+  width: 100%; height: 100%; display: block;
+  transform: scaleX(1.02); transform-origin: center;
+}
+
+/* VÉHICULES */
+.vehicles-container {
+  position: absolute; top: 0; left: 50%;
+  transform: translateX(-50%); width: 90%; max-width: 1100px; height: 100%; pointer-events: none;
+}
+.vehicle-car {
+  position: absolute; bottom: 20px; left: 22.5%; transform: translateX(-50%);
+  width: 220px; z-index: 5;
+}
+.vehicle-bike {
+  position: absolute; bottom: 30px; left: 77.5%; transform: translateX(-50%);
+  width: 130px; z-index: 5;
+}
+
+/* STATS */
+.stats-container {
+  display: flex; justify-content: space-between; margin-bottom: 2rem; text-align: center;
+}
+.stat-box { width: 45%; }
+.stat-box h3 { font-size: 1.6rem; margin-bottom: 0.5rem; font-weight: 700; }
+.text-rose { color: var(--rose-marker); }
+.text-vert { color: var(--vert-eco); }
+
+.info-box {
+  background-color: var(--violet-badge); border-radius: 20px; padding: 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3); color: white;
+}
+.info-content { flex: 1; font-size: 1rem; }
+.info-content h4 {
+  color: var(--jaune-accent); font-size: 1.3rem; margin-top: 0; margin-bottom: 0.5rem;
+}
+.info-mascot { flex: 0 0 120px; margin: 0 1.5rem; text-align: center; }
+.info-mascot svg { width: 100%; height: auto; overflow: visible; }
+
+footer { text-align: center; padding: 3rem 1rem; color: var(--text-main); font-weight: 600; }
+
+@media (max-width: 768px) {
+  /* Scroll horizontal mobile */
+  .horizontal-container { width: 100%; flex-direction: column; height: auto; }
+  .horizontal-scroll-wrapper { height: auto; overflow: visible; }
+  .panel { width: 100%; height: auto; min-height: 100vh; }
+  
+  .timeline-row-simulate { flex-direction: column-reverse; padding: 2rem 0; }
+  .timeline-row-simulate .content-text { text-align: left; }
+  
+  .modern-panel::before { left: 20px; } /* Ligne à gauche sur mobile comme une timeline normale */
+  
+  .stats-container { flex-direction: column; gap: 2rem; }
+  .stat-box { width: 100%; }
+  .info-box { flex-direction: column; text-align: center; }
+  .info-mascot { margin: 1.5rem 0; width: 100px; }
+  .vehicle-car { left: 25%; width: 160px; bottom: 15px; }
+  .vehicle-bike { left: 75%; width: 100px; bottom: 25px; }
 }
