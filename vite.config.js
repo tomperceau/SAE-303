@@ -1,5 +1,9 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: './',  // <-- Le point et le slash. C'est tout.
+  // ATTENTION : Mets exactement le nom de ton dépôt ici (avec les majuscules)
+  base: '/SAE-303/', 
+  build: {
+    outDir: 'dist',
+  }
 })
