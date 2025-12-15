@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAé3.Crea.03 - gsap</title>
+  </head>
+  <body>
+    <div class="main">
+      <header>
+        <h1>Cours GSAP v3 - Les Bases</h1>
+      </header>
+      <main class="main">
+        <section class="sec1">
+          <h2>1. Tween de base</h2>
+          <div class="container">
+            <h3>gsap.to()</h3>
+            <p>Déplace l'élément VERS les valeurs définies.</p>
+            <div class="box box--a box--to">to</div>
+          </div>
+          <div class="container">
+            <h3>gsap.from()</h3>
+            <p>
+              Déplace l'élément DEPUIS les valeurs définies vers sa position
+              actuelle.
+            </p>
+            <div class="box box--b box--from">from</div>
+          </div>
+          <div class="container">
+            <h3>gsap.fromTo()</h3>
+            <p>Définit à la fois les valeurs de DÉPART et de FIN.</p>
+            <div class="box box--b box--from-to">from-to</div>
+          </div>
+        </section>
+        <section class="sec1">
+          <h2>2. Timelines</h2>
+          <p>Enchaîner des animations facilement.</p>
+          <div class="box box--a box--timeline">Timeline</div>
+        </section>
+        <section class="sec1">
+          <h2>3. Staggers (Décalages)</h2>
+          <p>Animer plusieurs éléments avec un décalage.</p>
+          <div class="container">
+            <div class="box box--a box--stagger">1</div>
+            <div class="box box--b box--stagger">2</div>
+            <div class="box box--c box--stagger">3</div>
+          </div>
+        </section>
+
+        <section class="sec1">
+          <h2>4. Contrôles</h2>
+          <p>Contrôler la lecture de l'animation.</p>
+          <div class="box box--c box--control">Control</div>
+          <div class="controls">
+            <button id="play">Play</button>
+            <button id="pause">Pause</button>
+            <button id="reverse">Reverse</button>
+            <button id="restart">Restart</button>
+          </div>
+        </section>
+
+        <section class="sec1">
+          <h2>5. ScrollTrigger</h2>
+          <div class="container">
+            <div class="box box--a box--s-trig"></div>
+            <div class="box box--b box--s-trig"></div>
+          </div>
+        </section>
+
+        <section class="sec1">
+          <h2>6. matchMedia (Responsive)</h2>
+          <p>
+            Animation uniquement sur desktop (> 768px). Redimensionnez la
+            fenêtre pour tester.
+          </p>
+          <div class="box box--a box--matchmedia">Desktop only</div>
+        </section>
+      </main>
+    </div>
+    <div class="line"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
