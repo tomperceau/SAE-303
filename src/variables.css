@@ -1,0 +1,19 @@
+/* 1. IMPORT FONTS */
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* 2. VARIABLES GLOBALES */
+:root {
+  --rose-marker:   #E30079;
+  --bleu-marker:   #45B7FF;
+  --jaune-accent:  #FFBF02;
+  --violet-badge:  #6200AC;
+  --violet-clair:  #6904d4;
+  --text-main:     #DDD9D6;
+  --bg-color:      #2A1A36;
+  --c:             #F5F3A9;
+  --vert-eco:      #00D059;
+  --creme-light:   #F5F3A9;
+  --font-main:     'MuseoModerno', sans-serif;
+  
+  
+}

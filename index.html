@@ -7,120 +7,290 @@
     <title>SAé3.Crea.03 - L'Odyssée du Travailleur</title>
   </head>
   <body>
-    <div id="app">
 
-      <header>
-        <div class="badge">L'ODYSSÉE DU TRAVAILLEUR</div>
-        <p class="subtitle">Du champ au bureau : l'évolution de nos habitudes avec Marc.</p>
-        <div class="mascot-container">
-          <img src="https://placehold.co/150x150/2A1A36/FFBF02?text=Marc+Mascotte" alt="Mascotte Marc" class="mascot">
-        </div>
-        <h1>L'histoire du travail à travers les âges</h1>
+      <header class="header">
+        <span class="header__badge">L'ODYSSÉE DU TRAVAILLEUR</span>
+        <p class="header__subtitle">Du champ au bureau : l'évolution de nos habitudes avec Marc.</p>
+        
+        <section class="header__mascot">
+          <figure id="header-marc"></figure>
+        </section>
+        
+        <h1 class="header__title">L'histoire du travail à travers les âges</h1>
       </header>
 
-      <main class="timeline">
+      <main>
 
-        <section class="timeline-row theme-rose">
-          <div class="content-text slide-from-left">
-            <h2>Moyen Âge</h2>
-            <p class="highlight">9 personnes sur 10</p>
-            <p>travaillent dans les champs. Peu de gens ont les connaissances pour lire ou écrire.</p>
-          </div>
-          <div class="timeline-marker"></div>
-          <div class="content-img slide-from-right">
-            <div id="container-svg-champ"></div>
-          </div>
+        <section class="timeline">
+
+          <figure class="timeline__row timeline__row--rose">
+            <figcaption class="timeline__content timeline__content--text slide-from-left">
+              <h2 class="timeline__title">Moyen Âge</h2>
+              <span class="timeline__highlight">9 personnes sur 10</span>
+              <p class="timeline__desc">travaillent dans les champs. Peu de gens ont les connaissances pour lire ou écrire.</p>
+            </figcaption>
+            
+            <span class="timeline__marker"></span>
+            
+            <span id="container-svg-champ" class="timeline__content timeline__content--img slide-from-right"></span>
+          </figure>
+
+          <figure class="timeline__row timeline__row--reverse timeline__row--bleu">
+            <span id="container-svg-usine" class="timeline__content timeline__content--img slide-from-left"></span>
+            
+            <span class="timeline__marker"></span>
+            
+            <figcaption class="timeline__content timeline__content--text slide-from-right">
+              <h2 class="timeline__title">Révolution industrielle</h2>
+              <span class="timeline__highlight">Des centaines de nouveaux métiers</span>
+              <p class="timeline__desc">apparaissent, de moins en moins manuels. De plus en plus de personnes dans les bureaux.</p>
+            </figcaption>
+          </figure>
+
+        </section> 
+
+
+        <section class="h-scroll">
+          <ul class="h-scroll__container">
+            
+            <li class="h-scroll__panel h-scroll__panel--modern">
+              <figure class="modern-timeline">
+                  <figcaption class="modern-timeline__text slide-from-left">
+                      <h2 class="modern-timeline__title">Époque moderne</h2>
+                      <span class="modern-timeline__highlight">En 2020</span>
+                      <p class="modern-timeline__desc">La pandémie bouscule les codes du monde du travail. Télétravail et nouvelles habitudes.</p>
+                  </figcaption>
+                  
+                  <span class="timeline__marker timeline__marker--yellow"></span>
+
+                  <span id="container-svg-moderne" class="modern-timeline__img slide-from-right"></span>
+              </figure>
+            </li>
+
+            <li class="h-scroll__panel h-scroll__panel--transition">
+              <article class="transition-box">
+                  <h2 class="transition-box__title">Les bons gestes pour moins polluer au travail avec Marc</h2>
+                  <span class="transition-box__indicator">↓</span>
+              </article>
+            </li>
+
+          </ul>
         </section>
 
-        <section class="timeline-row reverse theme-bleu">
-          <div class="content-img slide-from-left">
-             <div id="container-svg-usine"></div>
-          </div>
-          <div class="timeline-marker"></div>
-          <div class="content-text slide-from-right">
-            <h2>Révolution industrielle</h2>
-            <p class="highlight">Des centaines de nouveaux métiers</p>
-            <p>apparaissent, de moins en moins manuels. De plus en plus de personnes dans les bureaux.</p>
-          </div>
+
+        <section class="transport">
+            <h2 class="section-title">Le trajet domicile-travail</h2>
+
+            <section class="transport__visual">
+               <span class="transport__road">
+                   <span id="road-1" class="transport__tile"></span>
+                   <span id="road-2" class="transport__tile"></span>
+               </span>
+
+               <span class="transport__vehicles">
+                   <span id="container-svg-voiture" class="transport__car"></span>
+                   <span id="container-svg-velo" class="transport__bike"></span>
+               </span>
+            </section>
+
+            <ul class="stats">
+              <li class="stats__box slide-up">
+                 <h3 class="stats__title stats__title--rose">En voiture</h3>
+                 <p>Comme <span class="u-text-rose"><strong>72%</strong> des personnes</span>, Marc utilise un moyen de transport motorisé, sa voiture.</p>
+              </li>
+              <li class="stats__box slide-up">
+                 <h3 class="stats__title stats__title--green">À vélo</h3>
+                 <p>Seulement <span class="u-text-green"><strong>2,3%</strong> utilisent le vélo</span>, alors que le potentiel est immense !</p>
+              </li>
+            </ul>
+
+            <aside class="info-card slide-up">
+               <section class="info-card__content">
+                 <h4 class="info-card__title">Le saviez-vous ?</h4>
+                 <p>La moitié des trajets effectués en France font moins de 5 kilomètres. Le trafic des voitures représente <span class="u-text-rose">16% des émissions totales !</span></p>
+               </section>
+               
+               <figure class="info-card__mascot">
+                 <span id="container-svg-marc"></span>
+               </figure>
+
+               <section class="info-card__content">
+                 <p>Et si Marc prenait le vélo de temps-en-temps ? En habitant à moins de 5 km, il pourrait <span class="u-text-green">réduire ses émissions</span> de CO2 et faire <span class="u-text-green">un peu d'exercice !</span></p>
+               </section>
+            </aside>
         </section>
 
-      </main> 
 
+        <section class="computer">
+            <h2 class="section-title">L'ordinateur de Marc</h2>
 
-      <div class="horizontal-scroll-wrapper">
-        <div class="horizontal-container">
-          
-          <section class="panel theme-jaune modern-panel">
-            <div class="timeline-row-simulate">
-                <div class="content-text slide-from-left">
-                    <h2>Époque moderne</h2>
-                    <p class="highlight">En 2020</p>
-                    <p>La pandémie bouscule les codes du monde du travail. Télétravail et nouvelles habitudes.</p>
-                </div>
+            <ul class="computer__grid">
                 
-                <div class="timeline-marker"></div>
+                <li class="slide-up">
+                    <figure class="computer__state">
+                        <span id="container-svg-pcallume" class="computer__icon"></span>
+                        <figcaption>
+                            <h3 class="u-text-rose">En veille</h3>
+                            <p>Les <span class="u-text-rose">¾ de la consommation</span> ont lieu en période d'inactivité. Malheureusement Marc ne pense jamais à éteindre son PC.</p>
+                        </figcaption>
+                    </figure>
+                </li>
 
-                <div class="content-img slide-from-right">
-                    <div id="container-svg-moderne"></div>
-                </div>
-            </div>
-          </section>
+                <li class="slide-up">
+                    <figure class="computer__state">
+                        <span id="container-svg-pceteint" class="computer__icon"></span>
+                        <figcaption>
+                            <h3 class="u-text-green">Éteint</h3>
+                            <p>Imaginons que Marc pense à éteindre ses équipements. Il pourrait économiser jusqu'à <span class="u-text-green">11% de la consommation</span> énergétique totale !</p>
+                        </figcaption>
+                    </figure>
+                </li>
 
-          <section class="panel transition-panel">
-            <div class="transition-content">
-                <h2>Les bons gestes pour moins polluer au travail avec Marc</h2>
-                <div class="scroll-indicator">↓</div>
-            </div>
-          </section>
+            </ul>
 
-        </div>
-      </div>
+            <section class="computer__bottom">
+                
+                <section class="weight-comp">
+                    
+                    <figure class="weight-comp__item">
+                        <span id="container-svg-pc2kg" class="weight-comp__icon weight-comp__icon--small"></span>
+                        <figcaption class="weight-comp__caption">Un ordinateur de 2kg</figcaption>
+                    </figure>
 
+                    <span class="weight-comp__equals">=</span>
 
-      <section class="transport-section">
-          <h2 class="section-title">Le trajet domicile-travail</h2>
+                    <figure class="weight-comp__item">
+                        <span id="container-svg-588kg" class="weight-comp__icon weight-comp__icon--big"></span>
+                        <figcaption class="weight-comp__caption">588kg de matière première</figcaption>
+                    </figure>
 
-          <div class="transport-visual">
-             <div class="road-scroller">
-                 <div id="road-1" class="road-tile"></div>
-                 <div id="road-2" class="road-tile"></div>
-             </div>
+                </section>
 
-             <div class="vehicles-container">
-                 <div id="container-svg-voiture" class="vehicle-car"></div>
-                 <div id="container-svg-velo" class="vehicle-bike"></div>
-             </div>
-          </div>
+                <aside class="info-card info-card--dark slide-up">
+                    <section class="info-card__content info-card__content--center">
+                        <h4 class="info-card__title info-card__title--white">Le Numérique et le gaz à effet de serre</h4>
+                        <p><span class="u-text-rose">2,5% des émissions</span> françaises de gaz à effet de serre sont dues au numérique, et ce chiffre pourrait doubler d'ici 2025 !</p>
+                    </section>
+                </aside>
 
-          <div class="stats-container">
-            <div class="stat-box slide-up">
-               <h3 class="text-rose">En voiture</h3>
-               <p>Comme <strong>72%</strong> des personnes, Marc utilise un moyen de transport motorisé, sa voiture.</p>
-            </div>
-            <div class="stat-box slide-up">
-               <h3 class="text-vert">À vélo</h3>
-               <p>Seulement <strong>2,3%</strong> utilisent le vélo, alors que le potentiel est immense !</p>
-            </div>
-          </div>
+            </section>
 
-          <div class="info-box slide-up">
-             <div class="info-content">
-               <h4>Le saviez-vous ?</h4>
-               <p>La moitié des trajets effectués en France font moins de 5 kilomètres. Le trafic des voitures représente <span class="text-rose">16% des émissions totales !</span></p>
-             </div>
-             
-             <div class="info-mascot">
-               <div id="container-svg-marc"></div>
-             </div>
+        </section>
 
-             <div class="info-content">
-               <p>Et si Marc prenait le vélo de temps-en-temps ? En habitant à moins de 5 km, il pourrait <span class="text-vert">réduire ses émissions</span> de CO2 et faire <span class="text-vert">un peu d'exercice !</span></p>
-             </div>
-          </div>
-      </section>
+        <section class="printing">
+            <h2 class="section-title">L'impression de documents</h2>
 
+            <section class="printing__grid">
+                
+                <article class="printing__col">
+                    <figure class="printing__visual">
+                        <span id="container-svg-poubelle" class="printing__icon printing__icon--bin"></span>
+                    </figure>
+                    <section class="printing__content">
+                        <h3 class="printing__subtitle u-text-rose">Impression excessive</h3>
+                        <p><strong class="u-text-rose">1 document sur 4</strong> est jeté 5 minutes après l'impression. Souvent dû à des petites fautes d'inattention comme fait souvent Marc.</p>
+                    </section>
+                </article>
 
-    </div>
+                <figure class="printing__col printing__col--center">
+                    <figure class="printing__visual">
+                        <span id="container-svg-marc-printer-combined" class="printing__icon printing__icon--marc-printer"></span>
+                        <span id="container-svg-boulette" class="printing__boulette"></span>
+                    </figure>
+                </figure>
+
+                <article class="printing__col">
+                    <figure class="printing__visual">
+                        <span id="container-svg-feuille-seule" class="printing__icon printing__icon--sheet"></span>
+                    </figure>
+                    <section class="printing__content">
+                        <h3 class="printing__subtitle u-text-green">Impression réfléchie</h3>
+                        <p>Essayez un maximum de <span class="u-text-green">vérifier vos documents</span> avant de les imprimer afin de limiter les réimpressions.</p>
+                    </section>
+                </article>
+
+            </section>
+
+            <article class="info-card info-card--large slide-up">
+                <section class="info-card__content info-card__content--center">
+                    <h4 class="info-card__title">Le gâchis du papier</h4>
+                    <p>Bien sûr cela arrive à tout le monde de se tromper dans l'impression. Souvent Marc ne peut pas remarquer les erreurs avant d'avoir imprimé le document en question.</p>
+                </section>
+            </article>
+
+            <footer class="printing__footer">
+                
+                <figure class="paper-grid">
+                    <span id="container-svg-feuille-rouge" class="paper-grid__item"></span>
+                    <span id="container-svg-feuille-1" class="paper-grid__item"></span>
+                    <span id="container-svg-feuille-2" class="paper-grid__item"></span>
+                    <span id="container-svg-feuille-3" class="paper-grid__item"></span>
+                    <span id="container-svg-feuille-4" class="paper-grid__item"></span>
+                    <span id="container-svg-feuille-5" class="paper-grid__item"></span>
+                </figure>
+
+                <p class="printing__footer-text">
+                    Mais savez-vous qu'<strong class="u-text-rose">1 document sur 6</strong> n'est même jamais lu. Seule la moitié du papier est recyclée en entreprise.
+                </p>
+
+            </footer>
+        </section>
+
+        <section class="consumption">
+            <h2 class="section-title">La température au bureau</h2>
+
+            <ul class="consumption__actions">
+                
+                <li class="action-card">
+                    <figure class="action-card__visual">
+                        <span id="container-svg-radiateur-chaud" class="action-card__radiator"></span>
+                        <span id="container-svg-marc-normal" class="action-card__mascot"></span>
+                    </figure>
+                    <article class="action-card__content">
+                        <h3 class="action-card__title u-text-rose">Augmenter le chauffage</h3>
+                        <p class="action-card__desc">Le chauffage représente <strong class="u-text-rose">la moitié</strong> de la consommation d'un bureau. Marc augmente souvent la température car il a froid.</p>
+                    </article>
+                </li>
+
+                <li class="action-card">
+                    <figure class="action-card__visual">
+                        <span id="container-svg-radiateur-normal" class="action-card__radiator"></span>
+                        <span id="container-svg-marc-pull" class="action-card__mascot"></span>
+                    </figure>
+                    <article class="action-card__content">
+                        <h3 class="action-card__title u-text-green">Mettre un pull</h3>
+                        <p class="action-card__desc">Pour optimiser sa consommation, Marc prend maintenant <span class="u-text-green">son pull</span> au lieu d'augmenter le thermostat. C'est bon pour lui et meilleur pour la planète !</p>
+                    </article>
+                </li>
+
+            </ul>
+
+            <article class="water-usage">
+                
+                <figure class="water-usage__visual">
+                    <span id="water-grid-container" class="water-usage__grid"></span>
+                    <span class="water-usage__divider"></span>
+                    <span id="container-svg-bonhomme" class="water-usage__icon"></span>
+                </figure>
+
+                <section class="water-usage__info">
+                    <h3 class="water-usage__title">10 à 30 litres par jour</h3>
+                    <p>Hors climatisation et restauration, un employé de bureau consomme entre 10 et 30 litres d'eau par jour.</p>
+                </section>
+
+            </article>
+
+            <aside class="info-card info-card--dark slide-up">
+                <section class="info-card__content info-card__content--center">
+                    <h4 class="info-card__title info-card__title--white">Chauffage et climatisation</h4>
+                    <p>Pour les grands bureaux équipés de climatisation, celle-ci représente jusqu'à 1/5 de l'énergie consommée à l'année. On réfléchit à deux fois avant de bouger le thermostat !</p>
+                </section>
+            </aside>
+
+        </section>
+
+      </main>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

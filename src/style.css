@@ -1,45 +1,40 @@
-/* 1. IMPORT UNIQUEMENT MUSEOMODERNO */
-@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+/* --- UTILS --- */
+.u-text-rose { color: var(--rose-marker); }
+.u-text-green { color: var(--vert-eco); }
 
-:root {
-  --rose-marker:   #E30079;
-  --bleu-marker:   #45B7FF;
-  --jaune-accent:  #FFBF02;
-  --violet-badge:  #6200AC;
-  --violet-clair:  #6904d4;
-  --text-main:     #DDD9D6;
-  --bg-color:      #2A1A36;
-  --creme-light:   #F5F3A9;
-  --vert-eco:      #00D059;
-  --font-main: 'MuseoModerno', sans-serif;
-}
-
-body {
-  margin: 0; padding: 0;
-  background-color: var(--bg-color); color: var(--text-main);
-  font-family: var(--font-main); font-weight: 300; font-size: 1.1rem;
-  overflow-x: hidden; line-height: 1.5;
-}
-
-header {
+/* --- HEADER --- */
+.header {
   text-align: center; padding: 0 1rem;
   min-height: 100vh;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
   box-sizing: border-box;
+  gap: 2rem; 
 }
 
-.badge {
+.header__badge {
   background-color: var(--violet-badge); color: var(--jaune-accent);
-  display: inline-block; padding: 1rem 2rem; border-radius: 15px;
-  font-size: 2rem; font-weight: 900; text-transform: uppercase;
-  margin-bottom: 1rem; box-shadow: 0 4px 0px #3e006f;
+  display: inline-block; padding: 1.5rem 3rem; 
+  border-radius: 20px;
+  font-size: 3.5rem; 
+  font-weight: 900; text-transform: uppercase;
+  /* J'ai remplacé le #3e006f par --bg-color qui est la couleur sombre la plus proche disponible */
+  box-shadow: 0 6px 0px var(--bg-color);
 }
 
-.subtitle { font-size: 1.3rem; margin-bottom: 2rem; font-weight: 500; }
-.mascot-container img { width: 120px; height: auto; }
-h1 { color: var(--jaune-accent); margin-top: 2rem; font-size: 2.5rem; font-weight: 700; text-transform: uppercase; line-height: 1.1; }
+.header__subtitle { font-size: 2rem; margin-bottom: 0; font-weight: 500; }
 
-/* TIMELINE VERTICALE */
+.header__mascot { width: 250px; margin: 0 auto; }
+#header-marc { display: block; width: 100%; height: auto; }
+#header-marc svg { width: 100%; height: auto; display: block; }
+
+.header__title { 
+    color: var(--jaune-accent); margin-top: 1rem; 
+    font-size: 4.5rem; 
+    font-weight: 800; text-transform: uppercase; line-height: 1.1; max-width: 1200px;
+}
+
+
+/* --- TIMELINE VERTICALE --- */
 .timeline { position: relative; max-width: 1000px; margin: 0 auto; padding: 0; }
 .timeline::before {
   content: ''; position: absolute; left: 50%; transform: translateX(-50%);
@@ -48,111 +43,77 @@ h1 { color: var(--jaune-accent); margin-top: 2rem; font-size: 2.5rem; font-weigh
   background-size: 4px 20px; opacity: 0.3; top: 0; z-index: 0;
 }
 
-.timeline-row {
+.timeline__row {
   display: flex; justify-content: space-between; align-items: center;
   min-height: 100vh; margin-bottom: 0; padding: 2rem 0;
   position: relative; z-index: 1; box-sizing: border-box;
 }
 
-.content-text, .content-img { width: 42%; }
-.content-img img, .content-img svg {
-  width: 100%; max-height: 350px; height: auto;
-  display: block; margin: 0 auto; border-radius: 10px; box-shadow: none;
-}
-.content-img svg { background-color: transparent; }
-.content-text { text-align: right; }
-.content-text h2 { font-size: 2.5rem; margin-bottom: 0.5rem; font-weight: 700; color: var(--creme-light); }
-.content-text .highlight { color: var(--text-main); font-weight: 600; font-size: 1.4rem; margin-bottom: 0.5rem; display: block; }
-.content-text p { font-weight: 300; font-size: 1.2rem; }
+.timeline__content { width: 42%; display: block; }
+.timeline__content--text { text-align: right; }
 
-.timeline-marker {
-  width: 50px; height: 50px; border-radius: 15px; border: 10px solid; 
+.timeline__content--img svg {
+  width: 100%; max-height: 350px; height: auto;
+  display: block; margin: 0 auto; border-radius: 10px; background-color: transparent;
+}
+
+.timeline__title { font-size: 3rem; margin-bottom: 0.5rem; font-weight: 700; color: var(--creme-light); }
+.timeline__highlight { color: var(--text-main); font-weight: 600; font-size: 1.6rem; margin-bottom: 0.5rem; display: block; }
+.timeline__desc { font-weight: 300; font-size: 1.4rem; }
+
+.timeline__marker {
+  display: block; width: 50px; height: 50px; border-radius: 15px; border: 10px solid; 
   background-color: var(--bg-color); z-index: 2; box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
-.timeline-row.theme-rose .timeline-marker { border-color: var(--rose-marker); }
-.timeline-row.theme-rose h2 { color: var(--creme-light); }
-.timeline-row.reverse { flex-direction: row-reverse; }
-.timeline-row.reverse .content-text { text-align: left; }
-.timeline-row.theme-bleu .timeline-marker { border-color: var(--bleu-marker); }
+.timeline__row--rose .timeline__marker { border-color: var(--rose-marker); }
+.timeline__row--rose .timeline__title { color: var(--creme-light); }
+.timeline__row--bleu .timeline__marker { border-color: var(--bleu-marker); }
+
+.timeline__row--reverse { flex-direction: row-reverse; }
+.timeline__row--reverse .timeline__content--text { text-align: left; }
 
 
 /* --- SCROLL HORIZONTAL --- */
-.horizontal-scroll-wrapper {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden; 
-}
+.h-scroll { width: 100%; height: 100vh; overflow: hidden; }
+.h-scroll__container { display: flex; width: 200%; height: 100%; }
+.h-scroll__panel { width: 50%; height: 100%; display: flex; justify-content: center; align-items: center; box-sizing: border-box; }
 
-.horizontal-container {
-  display: flex;
-  width: 200%;
-  height: 100%;
-}
-
-.panel {
-  width: 50%; 
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-/* --- RECONSTRUCTION DE LA TIMELINE DANS LE PANEL --- */
-.modern-panel {
-  position: relative; /* Nécessaire pour la ligne pointillée */
-}
-
-/* La ligne pointillée spécifique à ce panneau */
-.modern-panel::before {
+.h-scroll__panel--modern { position: relative; }
+.h-scroll__panel--modern::before {
   content: ''; position: absolute; left: 50%; transform: translateX(-50%);
   width: 4px; height: 100%;
   background-image: linear-gradient(to bottom, var(--text-main) 30%, transparent 30%);
   background-size: 4px 20px; opacity: 0.3; top: 0; z-index: 0;
 }
 
-/* Le conteneur qui imite .timeline-row */
-.timeline-row-simulate {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1000px;
-  position: relative;
-  z-index: 1;
+.modern-timeline {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; max-width: 1000px; position: relative; z-index: 1;
 }
 
-/* Style du texte dans le panel moderne */
-.timeline-row-simulate .content-text { text-align: right; }
-.timeline-row-simulate h2 { color: var(--jaune-accent); font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-.timeline-row-simulate .highlight { color: var(--text-main); font-weight: 600; font-size: 1.4rem; margin-bottom: 0.5rem; display: block; }
+.modern-timeline__text { text-align: right; width: 42%; }
+.modern-timeline__title { color: var(--jaune-accent); font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
+.modern-timeline__highlight { color: var(--text-main); font-weight: 600; font-size: 1.6rem; margin-bottom: 0.5rem; display: block; }
+.modern-timeline__desc { font-weight: 300; font-size: 1.4rem; }
+.modern-timeline__img { width: 42%; display: block; }
+.modern-timeline__img svg { width: 100%; height: auto; display: block; }
 
-/* Couleur du marqueur moderne */
-.modern-panel .timeline-marker { border-color: var(--jaune-accent); }
+.timeline__marker--yellow { border: 10px solid var(--jaune-accent); width: 50px; height: 50px; border-radius: 15px; background-color: var(--bg-color); z-index: 2; }
 
-
-/* --- PANEL TRANSITION --- */
-.transition-panel {
-  background-color: var(--violet-clair);
-  color: #fff;
-  text-align: center;
-  padding: 2rem;
+/* Panel Transition */
+.h-scroll__panel--transition {
+  background-color: var(--violet-clair); 
+  /* Remplacement de #fff par --text-main */
+  color: var(--text-main); 
+  text-align: center; padding: 2rem;
 }
-
-.transition-content h2 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  line-height: 1.2;
-  color: #fff;
+.transition-box__title { 
+  font-size: 4rem; font-weight: 800; line-height: 1.2; 
+  /* Remplacement de #fff par --creme-light pour garder le contraste */
+  color: var(--creme-light); 
 }
-
-.scroll-indicator {
-  margin-top: 2rem;
-  font-size: 3rem;
-  animation: bounce 2s infinite;
-}
-
+.transition-box__indicator { display: block; margin-top: 2rem; font-size: 4rem; animation: bounce 2s infinite; }
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
   40% {transform: translateY(-15px);}
@@ -160,87 +121,425 @@ h1 { color: var(--jaune-accent); margin-top: 2rem; font-size: 2.5rem; font-weigh
 }
 
 
-/* --- SECTION TRANSPORT --- */
-.transport-section {
+/* --- SECTION TRANSPORT & Général Titres --- */
+.transport {
   padding: 2rem 0; min-height: 100vh;
   display: flex; flex-direction: column; justify-content: center; align-items: center; overflow-x: hidden; 
 }
-.section-title, .stats-container, .info-box {
-  max-width: 1100px; width: 90%; margin-left: auto; margin-right: auto;
-}
 .section-title {
-  text-align: center; color: var(--jaune-accent); font-size: 2.5rem; font-weight: 700;
-  margin-bottom: 1.5rem; text-transform: uppercase;
+  max-width: 1100px; width: 90%; margin-left: auto; margin-right: auto;
+  text-align: center; color: var(--jaune-accent); 
+  font-size: 3rem; 
+  font-weight: 700;
+  margin-bottom: 5rem; 
+  text-transform: uppercase;
 }
 
-/* ZONE ROUTE */
-.transport-visual {
-  position: relative; width: 100vw; height: 130px; margin-bottom: 1.5rem; overflow: hidden; 
-}
-.road-scroller {
-  display: flex; width: 200vw; height: 100%; position: absolute; bottom: 0; left: 0;
-  font-size: 0; line-height: 0;
-}
-.road-tile {
-  width: 100vw; height: 100%; margin: 0; padding: 0; overflow: visible;
-}
-.road-tile svg {
-  width: 100%; height: 100%; display: block;
-  transform: scaleX(1.02); transform-origin: center;
-}
+.transport__visual { position: relative; width: 100vw; height: 130px; margin-bottom: 1.5rem; overflow: hidden; }
+.transport__road { display: flex; width: 200vw; height: 100%; position: absolute; bottom: 0; left: 0; font-size: 0; line-height: 0; }
+.transport__tile { display: block; width: 100vw; height: 100%; margin: 0; padding: 0; overflow: visible; }
+.transport__tile svg { width: 100%; height: 100%; display: block; transform: scaleX(1.02); transform-origin: center; }
 
-/* VÉHICULES */
-.vehicles-container {
-  position: absolute; top: 0; left: 50%;
-  transform: translateX(-50%); width: 90%; max-width: 1100px; height: 100%; pointer-events: none;
-}
-.vehicle-car {
-  position: absolute; bottom: 20px; left: 22.5%; transform: translateX(-50%);
-  width: 220px; z-index: 5;
-}
-.vehicle-bike {
-  position: absolute; bottom: 30px; left: 77.5%; transform: translateX(-50%);
-  width: 130px; z-index: 5;
-}
+.transport__vehicles { display: block; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1100px; height: 100%; pointer-events: none; }
+.transport__car, .transport__bike { display: block; }
+.transport__car { position: absolute; bottom: 20px; left: 22.5%; transform: translateX(-50%); width: 220px; z-index: 5; }
+.transport__bike { position: absolute; bottom: 30px; left: 77.5%; transform: translateX(-50%); width: 130px; z-index: 5; }
 
-/* STATS */
-.stats-container {
-  display: flex; justify-content: space-between; margin-bottom: 2rem; text-align: center;
+.stats {
+  max-width: 1100px; width: 90%; margin: 0 auto 2rem auto;
+  display: flex; justify-content: space-between; text-align: center;
 }
-.stat-box { width: 45%; }
-.stat-box h3 { font-size: 1.6rem; margin-bottom: 0.5rem; font-weight: 700; }
-.text-rose { color: var(--rose-marker); }
-.text-vert { color: var(--vert-eco); }
+.stats__box { width: 45%; }
 
-.info-box {
-  background-color: var(--violet-badge); border-radius: 20px; padding: 1.5rem;
+.stats__title { font-size: 2rem; margin-bottom: 0.5rem; font-weight: 700; }
+.stats__title--rose { color: var(--rose-marker); }
+.stats__title--green { color: var(--vert-eco); }
+
+.info-card {
+  max-width: 1000px; width: 90%; margin: 0 auto 2rem auto;
+  background-color: var(--violet-badge); border-radius: 20px; padding: 2.5rem;
   display: flex; align-items: center; justify-content: space-between;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3); color: white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3); color: var(--text-main);
+  box-sizing: border-box;
 }
-.info-content { flex: 1; font-size: 1rem; }
-.info-content h4 {
-  color: var(--jaune-accent); font-size: 1.3rem; margin-top: 0; margin-bottom: 0.5rem;
-}
-.info-mascot { flex: 0 0 120px; margin: 0 1.5rem; text-align: center; }
-.info-mascot svg { width: 100%; height: auto; overflow: visible; }
+.info-card__content { flex: 1; font-size: 1.2rem; }
+.info-card__title { color: var(--jaune-accent); font-size: 1.6rem; margin-top: 0; margin-bottom: 0.5rem; }
+.info-card__mascot { flex: 0 0 120px; margin: 0 1.5rem; text-align: center; }
+.info-card__mascot span { display: block; }
+.info-card__mascot svg { width: 100%; height: auto; overflow: visible; }
 
+.info-card--dark { 
+    background-color: var(--violet-badge); 
+    text-align: center; 
+    justify-content: center; 
+    flex-direction: column;
+}
+
+.info-card__content--center { text-align: center; width: 100%; }
+.info-card__title--white { color: var(--jaune-accent); }
+
+
+/* --- SECTION ORDINATEUR --- */
+.computer {
+    padding: 2rem 0; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.computer__grid {
+    display: flex; justify-content: space-between; 
+    max-width: 1100px; width: 90%; 
+    margin: 0 auto 1.5rem auto; 
+    text-align: center;
+}
+.computer__grid li { width: 45%; }
+
+.computer__state { width: 100%; }
+
+.computer__icon { display: block; margin-bottom: 0.5rem; }
+.computer__icon svg { 
+    height: 180px; 
+    width: auto; 
+    margin: 0 auto; 
+    display: block; 
+}
+
+.computer__bottom {
+    display: flex;
+    justify-content: space-between; align-items: center;
+    max-width: 1100px; width: 90%; margin: 0 auto; 
+    gap: 2rem; 
+}
+
+.weight-comp {
+    width: 45%;
+    flex: 0 0 45%;
+    display: flex; justify-content: center; align-items: center; gap: 2rem;
+    margin-bottom: 0;
+}
+
+.computer__bottom .info-card--dark {
+    width: 45%;
+    flex: 0 0 45%;
+    margin-bottom: 0;
+}
+
+.weight-comp__item { text-align: center; }
+
+.weight-comp__icon { display: block; margin: 0 auto; overflow: visible; }
+.weight-comp__icon--small svg { height: 60px; width: auto; }
+
+.weight-comp__icon--big svg { 
+    height: 240px; 
+    width: auto; 
+}
+
+.weight-comp__caption { margin-top: 1rem; font-weight: 600; font-size: 1.1rem; display: block; }
+.weight-comp__equals { display: block; font-size: 5rem; font-weight: 900; color: var(--jaune-accent); margin-top: -2rem; }
+
+
+/* --- SECTION IMPRESSION --- */
+.printing {
+    padding: 4rem 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.printing__grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 3rem;
+    gap: 2rem;
+}
+
+/* Z-INDEX IMPORTANT : Poubelle au-dessus */
+.printing__col:nth-child(1) {
+    z-index: 20;
+    position: relative;
+}
+.printing__col:nth-child(2) {
+    z-index: 10;
+    position: relative;
+}
+
+.printing__col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.printing__col--center {
+    flex: 0 0 25%; 
+    justify-content: center;
+}
+
+.printing__visual {
+    margin-bottom: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.printing__icon svg { display: block; height: auto; width: auto; }
+.printing__icon--bin svg { max-height: 180px; width: 100%; }
+.printing__icon--marc-printer svg { max-height: 250px; width: 100%; display: block; }
+.printing__icon--sheet svg { max-height: 120px; min-height: 100px; margin-top: 30px; } 
+
+.printing__boulette {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 30px;      
+    left: 40px;     
+    z-index: 50;
+    opacity: 0;     
+    pointer-events: none;
+}
+.printing__boulette svg {
+    width: 100%;
+    height: 100%;
+    /* Remplacement de #ddd par --text-main */
+    fill: var(--text-main);
+}
+
+.printing__subtitle {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.info-card--large {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    padding: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.printing__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    width: 100%;
+    max-width: 900px;
+}
+
+.paper-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 15px;
+    width: 200px; 
+}
+
+.paper-grid__item svg { width: 100%; height: auto; display: block; }
+
+.printing__footer-text {
+    flex: 1;
+    font-size: 1.3rem;
+    text-align: left;
+}
+
+
+/* --- SECTION CONSOMMATION (TEMPÉRATURE & EAU) --- */
+.consumption {
+    padding: 4rem 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.consumption__actions {
+    display: flex;
+    justify-content: space-between; 
+    max-width: 1100px; 
+    width: 100%;
+    margin: 0 auto 4rem auto;
+    list-style: none;
+    gap: 2rem;
+}
+
+.action-card {
+    width: 45%; 
+    max-width: 500px;
+    text-align: center;
+}
+
+.action-card__visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    height: 240px;  
+}
+
+.action-card__radiator svg {
+    height: 190px; 
+    width: auto;
+    display: block;
+}
+
+.action-card__mascot svg {
+    height: 150px; 
+    width: auto;
+    display: block;
+}
+
+.action-card__content {
+    display: block;
+}
+
+.action-card__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.action-card__desc {
+    font-size: 1.2rem;
+}
+
+
+/* Water Usage (Article) */
+.water-usage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4rem;
+    width: 100%;
+}
+
+.water-usage__visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.water-usage__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    width: 110px;
+}
+.water-grid__drop svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.water-usage__divider {
+    display: block;
+    width: 4px;
+    height: 150px;
+    /* Remplacement de #2c2663 par --violet-badge */
+    background-color: var(--violet-badge); 
+    transform: rotate(15deg);
+    border-radius: 2px;
+}
+
+.water-usage__icon svg {
+    height: 100px;
+    width: auto;
+    display: block;
+    fill: var(--jaune-accent); 
+}
+
+.water-usage__info {
+    text-align: center;
+    max-width: 600px;
+}
+
+.water-usage__title {
+    color: var(--text-main);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+/* --- ANIMATION FUMÉE RADIATEUR --- */
+.smoke-wrapper {
+    position: absolute;
+    top: 15%; 
+    left: 30%; 
+    width: 60px;
+    height: 100px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.smoke-particle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    /* On garde rgba ici car c'est une valeur fonctionnelle pour l'effet fumée */
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    filter: blur(8px);
+    opacity: 0;
+    transform-origin: center bottom;
+}
+
+
+/* --- RESPONSIVE GÉNÉRAL --- */
 footer { text-align: center; padding: 3rem 1rem; color: var(--text-main); font-weight: 600; }
 
-@media (max-width: 768px) {
-  /* Scroll horizontal mobile */
-  .horizontal-container { width: 100%; flex-direction: column; height: auto; }
-  .horizontal-scroll-wrapper { height: auto; overflow: visible; }
-  .panel { width: 100%; height: auto; min-height: 100vh; }
+/* @media (max-width: 768px) {
+  .header__badge { font-size: 2rem; padding: 1rem 2rem; }
+  .header__title { font-size: 3rem; }
+  .header__mascot svg { width: 180px; }
+
+  .h-scroll__container { width: 100%; flex-direction: column; height: auto; }
+  .h-scroll { height: auto; overflow: visible; }
+  .h-scroll__panel { width: 100%; height: auto; min-height: 100vh; }
   
-  .timeline-row-simulate { flex-direction: column-reverse; padding: 2rem 0; }
-  .timeline-row-simulate .content-text { text-align: left; }
+  .modern-timeline { flex-direction: column-reverse; padding: 2rem 0; }
+  .modern-timeline__text { text-align: left; width: 100%; }
+  .modern-timeline__img { width: 100%; }
+  .h-scroll__panel--modern::before { left: 20px; }
   
-  .modern-panel::before { left: 20px; } /* Ligne à gauche sur mobile comme une timeline normale */
+  .stats, .computer__grid { flex-direction: column; gap: 2rem; }
+  .stats__box, .computer__grid li { width: 100%; }
   
-  .stats-container { flex-direction: column; gap: 2rem; }
-  .stat-box { width: 100%; }
-  .info-box { flex-direction: column; text-align: center; }
-  .info-mascot { margin: 1.5rem 0; width: 100px; }
-  .vehicle-car { left: 25%; width: 160px; bottom: 15px; }
-  .vehicle-bike { left: 75%; width: 100px; bottom: 25px; }
-}
+  .info-card { flex-direction: column; text-align: center; }
+  .info-card__mascot { margin: 1.5rem 0; width: 100px; }
+  .transport__car { left: 25%; width: 160px; bottom: 15px; }
+  .transport__bike { left: 75%; width: 100px; bottom: 25px; }
+
+  .computer__bottom { flex-direction: column-reverse; }
+  .info-card--dark, .weight-comp { width: 100%; }
+  .weight-comp { margin-top: 2rem; gap: 1rem; }
+  .weight-comp__equals { transform: rotate(90deg); margin: 0; }
+
+  .printing__grid { flex-direction: column; }
+  .printing__col--center { order: -1; margin-bottom: 2rem; }
+  .printing__footer { flex-direction: column; gap: 2rem; text-align: center; }
+  .printing__footer-text { text-align: center; }
+
+  .consumption__actions { flex-direction: column; gap: 3rem; }
+  .action-card { width: 100%; max-width: 100%; }
+  .water-usage__visual { flex-direction: row; gap: 1.5rem; }
+  .water-usage__grid { width: 100px; gap: 5px; }
+  .water-usage__divider { height: 100px; }
+} */

@@ -1,0 +1,16 @@
+figure, figcaption, ul, li, h1, h2, h3, h4, p, section, article, aside, footer {
+    margin: 0; padding: 0;
+}
+ul { list-style: none; }
+figure { display: block; }
+
+body {
+  margin: 0; padding: 0;
+  background-color: var(--bg-color); 
+  color: var(--text-main);
+  font-family: var(--font-main); 
+  font-weight: 300; 
+  font-size: 1.3rem; 
+  overflow-x: hidden; 
+  line-height: 1.6; 
+}
