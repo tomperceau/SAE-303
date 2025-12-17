@@ -5,107 +5,29 @@ import './style.css';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Imports des SVGs existants
-import champSvgRaw from './assets/SVG/champ.svg?raw';
-import usineSvgRaw from './assets/SVG/usine.svg?raw';
-import moderneSvgRaw from './assets/SVG/moderne.svg?raw';
-import routeSvgRaw from './assets/SVG/route.svg?raw';
-import voitureSvgRaw from './assets/SVG/voiture.svg?raw';
-import veloSvgRaw from './assets/SVG/velo.svg?raw';
-import marcSvgRaw from './assets/SVG/marc.svg?raw';
-
-// Imports des SVGs (Computer)
-import pcallumeSvgRaw from './assets/SVG/pcallume.svg?raw';
-import pceteintSvgRaw from './assets/SVG/pceteint.svg?raw';
-import pc2kgSvgRaw from './assets/SVG/pc2kg.svg?raw';
-import poid588kgSvgRaw from './assets/SVG/588kg.svg?raw';
-
-// Imports des SVGs IMPRESSION
-import marcsurimprimanteSvgRaw from './assets/SVG/marcsurimprimante.svg?raw';
-import poubelleSvgRaw from './assets/SVG/poubelle.svg?raw';
-import feuilleSvgRaw from './assets/SVG/feuille.svg?raw';
-import feuilleRougeSvgRaw from './assets/SVG/feuillerouge.svg?raw';
-import bouletteSvgRaw from './assets/SVG/boulette.svg?raw';
-
-// Imports SVG CONSOMMATION
-import radiateurSvgRaw from './assets/SVG/radiateur.svg?raw';
-import radiateurChaudSvgRaw from './assets/SVG/radiateurchaud.svg?raw';
-import marcPullSvgRaw from './assets/SVG/marcpull.svg?raw';
-import gouteSvgRaw from './assets/SVG/goute.svg?raw';
-import bonhommeSvgRaw from './assets/SVG/bonhomme.svg?raw';
-
 gsap.registerPlugin(ScrollTrigger);
 
-function injectSvg(id, rawContent, etirer = false) {
-  const container = document.getElementById(id);
-  if (container) {
-    container.innerHTML = rawContent;
-    const svgEl = container.querySelector('svg');
-    if (svgEl) {
-      svgEl.classList.add('illustration-svg');
-      svgEl.style.overflow = 'visible';
-      if (etirer) {
-         svgEl.setAttribute('preserveAspectRatio', 'none'); 
-      }
-    }
-    return container;
-  }
-  return null;
-}
-
 // =========================================
-// 1. INJECTIONS SVG GÉNÉRALES
+// SÉLECTION DES ÉLÉMENTS (Plus d'injections)
 // =========================================
-const champContainer = injectSvg('container-svg-champ', champSvgRaw);
-injectSvg('container-svg-usine', usineSvgRaw);
-injectSvg('container-svg-voiture', voitureSvgRaw);
-injectSvg('container-svg-velo', veloSvgRaw);
-injectSvg('container-svg-marc', marcSvgRaw);
 
-const marcHeaderContainer = injectSvg('header-marc', marcSvgRaw);
-
-const pcAllumeContainer = injectSvg('container-svg-pcallume', pcallumeSvgRaw);
-injectSvg('container-svg-pceteint', pceteintSvgRaw);
-injectSvg('container-svg-pc2kg', pc2kgSvgRaw);
-const poidContainer = injectSvg('container-svg-588kg', poid588kgSvgRaw);
-
-injectSvg('road-1', routeSvgRaw, true);
-injectSvg('road-2', routeSvgRaw, true);
-
-injectSvg('container-svg-poubelle', poubelleSvgRaw);
-injectSvg('container-svg-feuille-seule', feuilleSvgRaw);
-const bouletteContainer = injectSvg('container-svg-boulette', bouletteSvgRaw);
-const marcPrinterContainer = injectSvg('container-svg-marc-printer-combined', marcsurimprimanteSvgRaw);
-injectSvg('container-svg-feuille-rouge', feuilleRougeSvgRaw);
-for (let i = 1; i <= 5; i++) {
-    injectSvg(`container-svg-feuille-${i}`, feuilleSvgRaw);
-}
-
-injectSvg('container-svg-radiateur-chaud', radiateurChaudSvgRaw);
-injectSvg('container-svg-marc-normal', marcSvgRaw);
-injectSvg('container-svg-radiateur-normal', radiateurSvgRaw);
-injectSvg('container-svg-marc-pull', marcPullSvgRaw);
-injectSvg('container-svg-bonhomme', bonhommeSvgRaw);
-injectSvg('icon-velo-fin', veloSvgRaw);
-injectSvg('icon-pc-fin', pceteintSvgRaw);
-injectSvg('icon-temp-fin', marcPullSvgRaw);
-injectSvg('icon-print-fin', feuilleSvgRaw);
-injectSvg('container-svg-marc-final', marcSvgRaw);
-
+const champContainer = document.getElementById('container-svg-champ');
+const containerUsine = document.getElementById('container-svg-usine');
+const containerModerne = document.getElementById('container-svg-moderne');
+const marcHeaderContainer = document.getElementById('header-marc');
+const marcPrinterContainer = document.getElementById('container-svg-marc-printer-combined');
+const pcAllumeContainer = document.getElementById('container-svg-pcallume');
+const marcContainer = document.getElementById('container-svg-marc'); // Marc dans la carte info
+const poidContainer = document.getElementById('container-svg-588kg');
 
 // =========================================
 // 2. ANIMATION HEADER - MARC FLOTTANT
 // =========================================
-if(marcHeaderContainer) {
-    gsap.to(marcHeaderContainer, { y: -15, duration: 2, repeat: -1, yoyo: true, ease: "sine.inOut" });
-}
-
 
 // =========================================
 // 3. ANIMATION CHAMP (NUAGES & PAYSANS)
 // =========================================
 if (champContainer) {
-    
     const nuages = champContainer.querySelectorAll('[fill="#ffffff"], [fill="#FFFFFF"], [fill="#ededed"], [fill="#f2eade"]');
     if (nuages.length > 0) {
         gsap.to(nuages, {
@@ -117,6 +39,7 @@ if (champContainer) {
         });
     }
 
+    // Petit délai pour s'assurer que le DOM est prêt (même si en inline c'est immédiat)
     setTimeout(() => {
         const elementsJaunes = champContainer.querySelectorAll('[fill="#ffbf02"]');
         
@@ -151,7 +74,6 @@ if (champContainer) {
 // =========================================
 // 4. ANIMATION USINE FUMÉE
 // =========================================
-const containerUsine = document.getElementById('container-svg-usine');
 if (containerUsine) {
     const fumeeCercles = containerUsine.querySelectorAll('circle');
     fumeeCercles.forEach((cercle) => {
@@ -163,45 +85,34 @@ if (containerUsine) {
 // =========================================
 // 5. ANIMATION BÂTIMENT MODERNE (FENÊTRES)
 // =========================================
-const containerModerne = document.getElementById('container-svg-moderne');
-if (containerModerne) {
-  containerModerne.innerHTML = moderneSvgRaw;
-  const svgEl = containerModerne.querySelector('svg');
-  if(svgEl) svgEl.classList.add('illustration-svg');
-  
-  setTimeout(() => {
-      const elementsPotentiels = containerModerne.querySelectorAll('[fill="#ffbf02"], [fill="#6904d4"]');
-      const fenetresDuBas = [];
-      elementsPotentiels.forEach((el) => {
-        const bbox = el.getBBox();
-        if (bbox.y > 150 && bbox.width < 40 && bbox.height < 40) {
-            fenetresDuBas.push(el);
-        }
-      });
-      fenetresDuBas.forEach(el => { gsap.set(el, { fill: '#ffbf02' }); el.isOff = false; });
-      let nbFenetresEteintes = 0;
-      const MAX_ETEINTES = 3; 
-      function cycleClignotement() {
-          if (nbFenetresEteintes < MAX_ETEINTES) {
-              const fenetresDisponibles = fenetresDuBas.filter(el => !el.isOff);
-              if (fenetresDisponibles.length > 0) {
-                  const indexHasard = Math.floor(Math.random() * fenetresDisponibles.length);
-                  eteindreFenetre(fenetresDisponibles[indexHasard]);
-              }
-          }
-          gsap.delayedCall(gsap.utils.random(0.1, 0.4), cycleClignotement);
-      }
-      function eteindreFenetre(el) {
-          el.isOff = true; nbFenetresEteintes++;
-          gsap.to(el, { fill: '#6904d4', duration: 0.1, onComplete: () => { gsap.delayedCall(gsap.utils.random(0.5, 2.5), () => rallumerFenetre(el)); }});
-      }
-      function rallumerFenetre(el) {
-          gsap.to(el, { fill: '#ffbf02', duration: 0.1, onComplete: () => { el.isOff = false; nbFenetresEteintes--; }});
-      }
-      cycleClignotement();
-  }, 100); 
-}
 
+// On s'assure d'avoir la variable (si tu l'as déjà déclarée plus haut, garde ta déclaration)
+const batimentModerne = document.querySelector('#container-svg-moderne');
+
+if (batimentModerne) {
+    // 1. On cible uniquement les fenêtres jaunes
+    const fenetres = batimentModerne.querySelectorAll('[fill="#ffbf02"]');
+
+    // 2. On lance l'animation pour chaque fenêtre
+    fenetres.forEach(fenetre => {
+        
+        // On calcule les temps AVANT pour être sûr que chaque fenêtre est unique
+        const delaiAleatoire = gsap.utils.random(0, 5); // Délai de départ (0 à 5 sec)
+        const pauseAleatoire = gsap.utils.random(2, 5); // Pause entre clignotements
+
+        gsap.to(fenetre, {
+            fill: "#2A1A36",       // Devient violet (éteint)
+            stroke: "#2A1A36",     // <--- AJOUT : Le contour devient AUSSI violet (pour l'effacer visuellement)
+            duration: 0.2,         // Vitesse extinction (rapide)
+            repeat: -1,            // Infini
+            yoyo: true,            // Aller-retour
+            
+            // On applique les valeurs calculées
+            delay: delaiAleatoire,      
+            repeatDelay: pauseAleatoire 
+        });
+    });
+}
 
 // =========================================
 // 6. ANIMATIONS SLIDES ET TIMELINE
@@ -282,27 +193,9 @@ gsap.to(".transport__road", { x: "-50%", duration: 3, ease: "none", repeat: -1 }
 gsap.fromTo("#container-svg-voiture", { y: 0 }, { y: 1.5, duration: 0.1, repeat: -1, yoyo: true, ease: "linear" });
 gsap.fromTo("#container-svg-velo", { y: 0, rotation: 0 }, { y: -2, rotation: 1, duration: 0.25, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
-const marcContainer = document.getElementById('container-svg-marc');
-if (marcContainer) {
-    gsap.to(marcContainer, { y: -5, duration: 2, repeat: -1, yoyo: true, ease: "sine.inOut" });
-}
 
 
-// =========================================
-// 9. ANIMATION RESPIRATION (PC ALLUMÉ)
-// =========================================
-if (pcAllumeContainer) {
-    const yellowParts = pcAllumeContainer.querySelectorAll('[fill="#ffbf02"]');
-    if (yellowParts.length > 0) {
-        gsap.to(yellowParts, {
-            opacity: 0.4,
-            duration: 1.5,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
-    }
-}
+
 
 
 // =========================================
@@ -356,7 +249,7 @@ function throwPaperBall() {
     });
 
     tlThrow.to(boulette, {
-        x: -320, 
+        x: -360, 
         duration: 0.6,
         ease: "power1.in"
     }, 0);
@@ -483,7 +376,7 @@ if (hotRadiatorVisual) {
         tl.to(particle, {
             duration: gsap.utils.random(2, 4),
             y: gsap.utils.random(-100, -150), 
-            x: gsap.utils.random(-30, 30),    
+            x: gsap.utils.random(-30, 30),     
             scale: gsap.utils.random(2, 3.5), 
             opacity: gsap.utils.random(0.4, 0.8), 
             ease: "power1.out"
@@ -502,21 +395,21 @@ if (hotRadiatorVisual) {
 // 14. ANIMATION EAU (GRILLE DE GOUTTES)
 // =========================================
 const waterGridContainer = document.getElementById('water-grid-container');
-if (waterGridContainer) {
+const tplGoute = document.getElementById('tpl-goute'); // On récupère le template
+
+if (waterGridContainer && tplGoute) {
     const numCols = 5;
     const numRows = 7;
     const totalDrops = numCols * numRows;
 
+    
     for (let i = 0; i < totalDrops; i++) {
         const dropSpan = document.createElement('span');
         dropSpan.classList.add('water-grid__drop');
-        dropSpan.innerHTML = gouteSvgRaw;
         
-        const svgEl = dropSpan.querySelector('svg');
-        if(svgEl) {
-            svgEl.classList.add('illustration-svg');
-            svgEl.style.overflow = 'visible';
-        }
+        // On clone le contenu du template (le SVG que tu auras collé)
+        const clone = tplGoute.content.cloneNode(true);
+        dropSpan.appendChild(clone);
         
         waterGridContainer.appendChild(dropSpan);
     }

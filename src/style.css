@@ -2,7 +2,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 100px; /* Évite que le titre soit caché par la barre au scroll */
+    scroll-padding-top: 6.25rem; /* Évite que le titre soit caché par la barre au scroll */
     
     /* CACHER LA SCROLLBAR (Firefox) */
     scrollbar-width: none; 
@@ -42,7 +42,7 @@ ul {
 .progress-timeline {
     position: fixed;
     top: 50%;
-    left: 20px;
+    left: 1.25rem;
     transform: translateY(-50%);
     z-index: 2000;
     display: flex;
@@ -53,7 +53,7 @@ ul {
 
 .progress-line {
     position: relative;
-    width: 4px;
+    width: 0.25rem;
     height: 100%;
 }
 
@@ -64,7 +64,7 @@ ul {
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    border-radius: 0.25rem;
 }
 
 .progress-line__fill {
@@ -74,31 +74,35 @@ ul {
     width: 100%;
     height: 0%; /* Animé par JS */
     background-color: var(--jaune-accent);
-    border-radius: 4px;
+    border-radius: 0.25rem;
 }
 
 
 /* --- NAVBAR --- */
+/* --- NAVBAR --- */
 .navbar {
     position: absolute;
-    top: 20px;
+    top: 1.875rem; /* Descendu un peu plus bas (était 20px) */
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000; 
     
     background-color: var(--violet-badge);
     
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    /* MODIFICATION ICI : Plus d'espace intérieur */
+    padding: 1.2rem 3.5rem; 
+    
+    border-radius: 3.125rem;
+    box-shadow: 0 0.3125rem 1.25rem rgba(0,0,0,0.3);
     width: max-content;
     max-width: 90%;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 0.0625rem solid rgba(255,255,255,0.1);
 }
 
 .navbar__list {
     display: flex;
-    gap: 2rem;
+    /* MODIFICATION ICI : Plus d'espace entre les mots */
+    gap: 3rem; 
     list-style: none;
     margin: 0;
     padding: 0;
@@ -109,21 +113,26 @@ ul {
     text-decoration: none;
     color: var(--creme-light); 
     font-weight: 700;
-    font-size: 0.9rem;
+    /* MODIFICATION ICI : Texte plus gros */
+    font-size: 1.1rem; 
     text-transform: uppercase;
     transition: color 0.3s ease;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.0625rem; /* Un peu plus espacé pour l'élégance */
 }
 
 .navbar__link:hover {
     color: var(--jaune-accent);
 }
 
-@media (max-width: 768px) {
+.navbar__link:hover {
+    color: var(--jaune-accent);
+}
+
+@media (max-width: 48rem) {
     .navbar {
         position: fixed;
         top: auto;
-        bottom: 20px; 
+        bottom: 1.25rem; 
         width: 90%;
         overflow-x: auto;
         justify-content: center;
@@ -152,38 +161,54 @@ ul {
   display: flex; flex-direction: column; justify-content: center; align-items: center;
   box-sizing: border-box;
   gap: 2rem;
-  padding-top: 140px; 
+  padding-top: 8.75rem; 
 }
 
 .header__badge {
   background-color: var(--violet-badge); color: var(--jaune-accent);
   display: inline-block; padding: 1.5rem 3rem; 
-  border-radius: 20px;
+  border-radius: 1.25rem;
   font-size: 3.5rem; 
   font-weight: 900; text-transform: uppercase;
-  box-shadow: 0 6px 0px var(--bg-color);
+  box-shadow: 0 0.375rem 0 var(--bg-color);
 }
 
 .header__subtitle { font-size: 2rem; margin-bottom: 0; font-weight: 500; }
 
-.header__mascot { width: 250px; margin: 0 auto; }
-#header-marc { display: block; width: 100%; height: auto; }
+.header__mascot { 
+    width: 100%; 
+    margin: 0 auto; 
+    /* AJOUTS POUR CENTRER : */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#header-marc { 
+    display: block; 
+    width: 100%; 
+    /* J'ai corrigé l'erreur de syntaxe ici (il y avait ", align") */
+    height: auto;
+    /* Pour assurer le centrage des éléments internes */
+    display: flex;
+    justify-content: center;
+}
 #header-marc svg { width: 100%; height: auto; display: block; }
 
 .header__title { 
     color: var(--jaune-accent); margin-top: 1rem; 
     font-size: 4.5rem; 
-    font-weight: 800; text-transform: uppercase; line-height: 1.1; max-width: 1200px;
+    font-weight: 800; text-transform: uppercase; line-height: 1.1; max-width: 75rem;
 }
 
 
 /* --- TIMELINE VERTICALE --- */
-.timeline { position: relative; max-width: 1000px; margin: 0 auto; padding: 0; }
+.timeline { position: relative; max-width: 62.5rem; margin: 0 auto; padding: 0; }
 .timeline::before {
   content: ''; position: absolute; left: 50%; transform: translateX(-50%);
-  width: 4px; height: 100%;
+  width: 0.25rem; height: 100%;
   background-image: linear-gradient(to bottom, var(--text-main) 30%, transparent 30%);
-  background-size: 4px 20px; opacity: 0.3; top: 0; z-index: 0;
+  background-size: 0.25rem 1.25rem; opacity: 0.3; top: 0; z-index: 0;
 }
 
 .timeline__row {
@@ -196,8 +221,8 @@ ul {
 .timeline__content--text { text-align: right; }
 
 .timeline__content--img svg {
-  width: 100%; max-height: 350px; height: auto;
-  display: block; margin: 0 auto; border-radius: 10px; background-color: transparent;
+  width: 100%; max-height: 21.875rem; height: auto;
+  display: block; margin: 0 auto; border-radius: 0.625rem; background-color: transparent;
 }
 
 .timeline__title { font-size: 3rem; margin-bottom: 0.5rem; font-weight: 700; color: var(--creme-light); }
@@ -205,8 +230,8 @@ ul {
 .timeline__desc { font-weight: 300; font-size: 1.4rem; }
 
 .timeline__marker {
-  display: block; width: 50px; height: 50px; border-radius: 15px; border: 10px solid; 
-  background-color: var(--bg-color); z-index: 2; box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display: block; width: 3.125rem; height: 3.125rem; border-radius: 0.9375rem; border: 0.625rem solid; 
+  background-color: var(--bg-color); z-index: 2; box-shadow: 0 0 0.9375rem rgba(0,0,0,0.3);
 }
 
 .timeline__row--rose .timeline__marker { border-color: var(--rose-marker); }
@@ -225,14 +250,14 @@ ul {
 .h-scroll__panel--modern { position: relative; }
 .h-scroll__panel--modern::before {
   content: ''; position: absolute; left: 50%; transform: translateX(-50%);
-  width: 4px; height: 100%;
+  width: 0.25rem; height: 100%;
   background-image: linear-gradient(to bottom, var(--text-main) 30%, transparent 30%);
-  background-size: 4px 20px; opacity: 0.3; top: 0; z-index: 0;
+  background-size: 0.25rem 1.25rem; opacity: 0.3; top: 0; z-index: 0;
 }
 
 .modern-timeline {
   display: flex; justify-content: space-between; align-items: center;
-  width: 100%; max-width: 1000px; position: relative; z-index: 1;
+  width: 100%; max-width: 62.5rem; position: relative; z-index: 1;
 }
 
 .modern-timeline__text { text-align: right; width: 42%; }
@@ -242,7 +267,7 @@ ul {
 .modern-timeline__img { width: 42%; display: block; }
 .modern-timeline__img svg { width: 100%; height: auto; display: block; }
 
-.timeline__marker--yellow { border: 10px solid var(--jaune-accent); width: 50px; height: 50px; border-radius: 15px; background-color: var(--bg-color); z-index: 2; }
+.timeline__marker--yellow { border: 0.625rem solid var(--jaune-accent); width: 3.125rem; height: 3.125rem; border-radius: 0.9375rem; background-color: var(--bg-color); z-index: 2; }
 
 /* Panel Transition */
 .h-scroll__panel--transition {
@@ -257,8 +282,8 @@ ul {
 .transition-box__indicator { display: block; margin-top: 2rem; font-size: 4rem; animation: bounce 2s infinite; }
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-  40% {transform: translateY(-15px);}
-  60% {transform: translateY(-7px);}
+  40% {transform: translateY(-0.9375rem);}
+  60% {transform: translateY(-0.4375rem);}
 }
 
 
@@ -268,7 +293,7 @@ ul {
   display: flex; flex-direction: column; justify-content: center; align-items: center; overflow-x: hidden; 
 }
 .section-title {
-  max-width: 1100px; width: 90%; margin-left: auto; margin-right: auto;
+  max-width: 68.75rem; width: 90%; margin-left: auto; margin-right: auto;
   text-align: center; color: var(--jaune-accent); 
   font-size: 3rem; 
   font-weight: 700;
@@ -276,18 +301,18 @@ ul {
   text-transform: uppercase;
 }
 
-.transport__visual { position: relative; width: 100vw; height: 130px; margin-bottom: 1.5rem; overflow: hidden; }
+.transport__visual { position: relative; width: 100vw; height: 8.125rem; margin-bottom: 1.5rem; overflow: hidden; }
 .transport__road { display: flex; width: 200vw; height: 100%; position: absolute; bottom: 0; left: 0; font-size: 0; line-height: 0; }
 .transport__tile { display: block; width: 100vw; height: 100%; margin: 0; padding: 0; overflow: visible; }
 .transport__tile svg { width: 100%; height: 100%; display: block; transform: scaleX(1.02); transform-origin: center; }
 
-.transport__vehicles { display: block; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1100px; height: 100%; pointer-events: none; }
+.transport__vehicles { display: block; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 90%; max-width: 68.75rem; height: 100%; pointer-events: none; }
 .transport__car, .transport__bike { display: block; }
-.transport__car { position: absolute; bottom: 20px; left: 22.5%; transform: translateX(-50%); width: 220px; z-index: 5; }
-.transport__bike { position: absolute; bottom: 30px; left: 77.5%; transform: translateX(-50%); width: 130px; z-index: 5; }
+.transport__car { position: absolute; bottom: 1.25rem; left: 22.5%; transform: translateX(-50%); width: 13.75rem; z-index: 5; }
+.transport__bike { position: absolute; bottom: 1.875rem; left: 77.5%; transform: translateX(-50%); width: 8.125rem; z-index: 5; }
 
 .stats {
-  max-width: 1100px; width: 90%; margin: 0 auto 2rem auto;
+  max-width: 68.75rem; width: 90%; margin: 0 auto 2rem auto;
   display: flex; justify-content: space-between; text-align: center;
 }
 .stats__box { width: 45%; }
@@ -297,15 +322,15 @@ ul {
 .stats__title--green { color: var(--vert-eco); }
 
 .info-card {
-  max-width: 1000px; width: 90%; margin: 0 auto 2rem auto;
-  background-color: var(--violet-badge); border-radius: 20px; padding: 2.5rem;
+  max-width: 62.5rem; width: 90%; margin: 0 auto 2rem auto;
+  background-color: var(--violet-badge); border-radius: 1.25rem; padding: 2.5rem;
   display: flex; align-items: center; justify-content: space-between;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3); color: var(--text-main);
+  box-shadow: 0 0.625rem 1.25rem rgba(0,0,0,0.3); color: var(--text-main);
   box-sizing: border-box;
 }
 .info-card__content { flex: 1; font-size: 1.2rem; }
 .info-card__title { color: var(--jaune-accent); font-size: 1.6rem; margin-top: 0; margin-bottom: 0.5rem; }
-.info-card__mascot { flex: 0 0 120px; margin: 0 1.5rem; text-align: center; }
+.info-card__mascot { flex: 0 0 7.5rem; margin: 0 1.5rem; text-align: center; }
 .info-card__mascot span { display: block; }
 .info-card__mascot svg { width: 100%; height: auto; overflow: visible; }
 
@@ -327,7 +352,7 @@ ul {
 }
 .computer__grid {
     display: flex; justify-content: space-between; 
-    max-width: 1100px; width: 90%; 
+    max-width: 68.75rem; width: 90%; 
     margin: 0 auto 1.5rem auto; 
     text-align: center;
 }
@@ -337,7 +362,7 @@ ul {
 
 .computer__icon { display: block; margin-bottom: 0.5rem; }
 .computer__icon svg { 
-    height: 180px; 
+    height: 11.25rem; 
     width: auto; 
     margin: 0 auto; 
     display: block; 
@@ -346,7 +371,7 @@ ul {
 .computer__bottom {
     display: flex;
     justify-content: space-between; align-items: center;
-    max-width: 1100px; width: 90%; margin: 0 auto; 
+    max-width: 68.75rem; width: 90%; margin: 0 auto; 
     gap: 2rem; 
 }
 
@@ -366,10 +391,10 @@ ul {
 .weight-comp__item { text-align: center; }
 
 .weight-comp__icon { display: block; margin: 0 auto; overflow: visible; }
-.weight-comp__icon--small svg { height: 60px; width: auto; }
+.weight-comp__icon--small svg { height: 3.75rem; width: auto; }
 
 .weight-comp__icon--big svg { 
-    height: 240px; 
+    height: 15rem; 
     width: auto; 
 }
 
@@ -384,7 +409,7 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
     width: 90%;
 }
@@ -430,17 +455,17 @@ ul {
 }
 
 .printing__icon svg { display: block; height: auto; width: auto; }
-.printing__icon--bin svg { max-height: 180px; width: 100%; }
-.printing__icon--marc-printer svg { max-height: 250px; width: 100%; display: block; }
-.printing__icon--sheet svg { max-height: 120px; min-height: 100px; margin-top: 30px; } 
+.printing__icon--bin svg { max-height: 11.25rem; width: 100%; }
+.printing__icon--marc-printer svg { max-height: 15.625rem; width: 100%; display: block; }
+.printing__icon--sheet svg { max-height: 7.5rem; min-height: 6.25rem; margin-top: 1.875rem; } 
 
 .printing__boulette {
     display: block;
     position: absolute;
-    width: 30px;
-    height: 30px;
-    top: 30px;      
-    left: 40px;     
+    width: 1.875rem;
+    height: 1.875rem;
+    top: 1.875rem;      
+    left: 2.5rem;     
     z-index: 50;
     opacity: 0;     
     pointer-events: none;
@@ -460,7 +485,7 @@ ul {
 
 .info-card--large {
     width: 100%;
-    max-width: 900px;
+    max-width: 56.25rem;
     text-align: center;
     padding: 2.5rem;
     margin-bottom: 4rem;
@@ -472,15 +497,15 @@ ul {
     justify-content: center;
     gap: 4rem;
     width: 100%;
-    max-width: 900px;
+    max-width: 56.25rem;
 }
 
 .paper-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 15px;
-    width: 200px; 
+    gap: 0.9375rem;
+    width: 12.5rem; 
 }
 
 .paper-grid__item svg { width: 100%; height: auto; display: block; }
@@ -499,7 +524,7 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
     width: 90%;
 }
@@ -507,7 +532,7 @@ ul {
 .consumption__actions {
     display: flex;
     justify-content: space-between; 
-    max-width: 1100px; 
+    max-width: 68.75rem; 
     width: 100%;
     margin: 0 auto 4rem auto;
     list-style: none;
@@ -516,7 +541,7 @@ ul {
 
 .action-card {
     width: 45%; 
-    max-width: 500px;
+    max-width: 31.25rem;
     text-align: center;
 }
 
@@ -525,19 +550,19 @@ ul {
     display: flex;
     justify-content: center;
     align-items: flex-end; 
-    gap: 10px;
+    gap: 0.625rem;
     margin-bottom: 1.5rem;
-    height: 240px;  
+    height: 15rem;  
 }
 
 .action-card__radiator svg {
-    height: 190px; 
+    height: 11.875rem; 
     width: auto;
     display: block;
 }
 
 .action-card__mascot svg {
-    height: 150px; 
+    height: 9.375rem; 
     width: auto;
     display: block;
 }
@@ -578,8 +603,8 @@ ul {
 .water-usage__grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
-    width: 110px;
+    gap: 0.375rem;
+    width: 6.875rem;
 }
 .water-grid__drop svg {
     width: 100%;
@@ -589,15 +614,15 @@ ul {
 
 .water-usage__divider {
     display: block;
-    width: 4px;
-    height: 150px;
+    width: 0.25rem;
+    height: 9.375rem;
     background-color: var(--violet-badge); 
     transform: rotate(15deg);
-    border-radius: 2px;
+    border-radius: 0.125rem;
 }
 
 .water-usage__icon svg {
-    height: 100px;
+    height: 6.25rem;
     width: auto;
     display: block;
     fill: var(--jaune-accent); 
@@ -605,7 +630,7 @@ ul {
 
 .water-usage__info {
     text-align: center;
-    max-width: 600px;
+    max-width: 37.5rem;
 }
 
 .water-usage__title {
@@ -620,8 +645,8 @@ ul {
     position: absolute;
     top: 15%; 
     left: 30%; 
-    width: 60px;
-    height: 100px;
+    width: 3.75rem;
+    height: 6.25rem;
     pointer-events: none;
     z-index: 5;
 }
@@ -630,12 +655,12 @@ ul {
     position: absolute;
     bottom: 0;
     left: 50%;
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     /* On garde rgba ici car c'est une valeur fonctionnelle pour l'effet fumée */
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
-    filter: blur(8px);
+    filter: blur(0.5rem);
     opacity: 0;
     transform-origin: center bottom;
 }
@@ -657,19 +682,19 @@ ul {
     align-items: center;
     gap: 4rem;
     width: 90%;
-    max-width: 1100px;
+    max-width: 68.75rem;
     flex-wrap: wrap;
 }
 
 /* Carte Message */
 .conclusion__card {
     flex: 1;
-    min-width: 300px;
+    min-width: 18.75rem;
     background-color: var(--violet-badge);
     padding: 3rem;
-    border-radius: 20px;
+    border-radius: 1.25rem;
     text-align: center;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 0.9375rem 1.875rem rgba(0,0,0,0.2);
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
@@ -695,17 +720,17 @@ ul {
     margin: 0 auto;
 }
 .conclusion__mascot svg {
-    height: 180px;
+    height: 11.25rem;
     width: auto;
     display: block;
     margin: 0 auto;
-    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 0.625rem 0.625rem rgba(0,0,0,0.3));
 }
 
 /* Checklist Clean */
 .checklist {
     flex: 1;
-    min-width: 300px;
+    min-width: 18.75rem;
     display: flex;
     flex-direction: column;
     gap: 2rem; 
@@ -720,12 +745,12 @@ ul {
 }
 
 .checklist__item:hover {
-    transform: translateX(10px);
+    transform: translateX(0.625rem);
 }
 
 .checklist__icon {
-    width: 60px;
-    height: 60px;
+    width: 3.75rem;
+    height: 3.75rem;
     margin-right: 1.5rem;
     flex-shrink: 0;
 }
@@ -745,8 +770,8 @@ ul {
 }
 
 .checklist__check {
-    width: 30px;
-    height: 30px;
+    width: 1.875rem;
+    height: 1.875rem;
     background-color: var(--vert-eco);
     color: var(--bg-color);
     border-radius: 50%;
@@ -764,7 +789,7 @@ ul {
     width: 100%;
     text-align: center;
     padding: 3rem 1rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 0.0625rem solid rgba(255,255,255,0.1);
     margin-top: auto;
 }
 .main-footer p {
@@ -778,9 +803,21 @@ ul {
 /* --- RESPONSIVE GÉNÉRAL --- */
 footer { text-align: center; padding: 3rem 1rem; color: var(--text-main); font-weight: 600; }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .conclusion__layout { flex-direction: column; gap: 2rem; }
   .conclusion__card, .checklist { width: 100%; }
 }
 
 
+/* --- CORRECTIF ROUTE --- */
+.transport__tile svg {
+    width: 100%;
+    height: 100%;
+    display: block; /* C'est la clé : ça supprime l'espace blanc fantôme */
+}
+
+/* Autoriser les SVG à déborder (pour le saut de Marc et la fumée) */
+#container-svg-marc-printer-combined svg,
+#container-svg-usine svg {
+    overflow: visible;
+}
