@@ -8,6 +8,24 @@
   </head>
   <body>
 
+      <div class="progress-timeline">
+          <div class="progress-line">
+              <div class="progress-line__track"></div>
+              <div class="progress-line__fill"></div>
+          </div>
+      </div>
+
+      <nav class="navbar">
+        <ul class="navbar__list">
+            <li class="navbar__item"><a href="#histoire" class="navbar__link">Histoire</a></li>
+            <li class="navbar__item"><a href="#trajet" class="navbar__link">Trajet</a></li>
+            <li class="navbar__item"><a href="#numerique" class="navbar__link">Numérique</a></li>
+            <li class="navbar__item"><a href="#impression" class="navbar__link">Impression</a></li>
+            <li class="navbar__item"><a href="#energie" class="navbar__link">Énergie</a></li>
+            <li class="navbar__item"><a href="#bilan" class="navbar__link">Bilan</a></li>
+        </ul>
+      </nav>
+
       <header class="header">
         <span class="header__badge">L'ODYSSÉE DU TRAVAILLEUR</span>
         <p class="header__subtitle">Du champ au bureau : l'évolution de nos habitudes avec Marc.</p>
@@ -21,7 +39,7 @@
 
       <main>
 
-        <section class="timeline">
+        <section id="histoire" class="timeline">
 
           <figure class="timeline__row timeline__row--rose">
             <figcaption class="timeline__content timeline__content--text slide-from-left">
@@ -78,7 +96,7 @@
         </section>
 
 
-        <section class="transport">
+        <section id="trajet" class="transport">
             <h2 class="section-title">Le trajet domicile-travail</h2>
 
             <section class="transport__visual">
@@ -121,7 +139,7 @@
         </section>
 
 
-        <section class="computer">
+        <section id="numerique" class="computer">
             <h2 class="section-title">L'ordinateur de Marc</h2>
 
             <ul class="computer__grid">
@@ -177,7 +195,7 @@
 
         </section>
 
-        <section class="printing">
+        <section id="impression" class="printing">
             <h2 class="section-title">L'impression de documents</h2>
 
             <section class="printing__grid">
@@ -236,7 +254,7 @@
             </footer>
         </section>
 
-        <section class="consumption">
+        <section id="energie" class="consumption">
             <h2 class="section-title">La température au bureau</h2>
 
             <ul class="consumption__actions">
@@ -287,6 +305,48 @@
                 </section>
             </aside>
 
+        </section>
+
+        <section id="bilan" class="conclusion">
+            <h2 class="section-title">Le Bilan de l'Odyssée</h2>
+
+            <section class="conclusion__layout">
+                
+                <article class="conclusion__card slide-up">
+                    <h3 class="conclusion__subtitle">Prêt pour demain ?</h3>
+                    <p class="conclusion__text">
+                        Marc a bien compris la leçon. De l'agriculture médiévale au bureau moderne, chaque époque a ses défis. 
+                        Aujourd'hui, de petits gestes simples peuvent avoir un <span class="u-text-green">impact géant</span>.
+                    </p>
+                    <figure class="conclusion__mascot">
+                        <span id="container-svg-marc-final"></span>
+                    </figure>
+                </article>
+
+                <ul class="checklist slide-up">
+                    <li class="checklist__item">
+                        <span class="checklist__icon" id="icon-velo-fin"></span>
+                        <span class="checklist__text">Privilégier le vélo ou la marche</span>
+                        <span class="checklist__check">✔</span>
+                    </li>
+                    <li class="checklist__item">
+                        <span class="checklist__icon" id="icon-pc-fin"></span>
+                        <span class="checklist__text">Éteindre ses appareils le soir</span>
+                        <span class="checklist__check">✔</span>
+                    </li>
+                    <li class="checklist__item">
+                        <span class="checklist__icon" id="icon-temp-fin"></span>
+                        <span class="checklist__text">Un pull plutôt que le chauffage</span>
+                        <span class="checklist__check">✔</span>
+                    </li>
+                    <li class="checklist__item">
+                        <span class="checklist__icon" id="icon-print-fin"></span>
+                        <span class="checklist__text">Réfléchir avant d'imprimer</span>
+                        <span class="checklist__check">✔</span>
+                    </li>
+                </ul>
+
+            </section>
         </section>
 
       </main>

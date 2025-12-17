@@ -1,4 +1,3 @@
-// MODIFICATION : Import des 3 fichiers CSS dans l'ordre
 import './variables.css';
 import './reset.css';
 import './style.css';
@@ -6,9 +5,7 @@ import './style.css';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// (Le reste de ton fichier main.js reste exactement le même)
-// ...
-// ... Imports des SVGs existants ...
+// Imports des SVGs existants
 import champSvgRaw from './assets/SVG/champ.svg?raw';
 import usineSvgRaw from './assets/SVG/usine.svg?raw';
 import moderneSvgRaw from './assets/SVG/moderne.svg?raw';
@@ -59,66 +56,112 @@ function injectSvg(id, rawContent, etirer = false) {
 // =========================================
 // 1. INJECTIONS SVG GÉNÉRALES
 // =========================================
-injectSvg('container-svg-champ', champSvgRaw);
+const champContainer = injectSvg('container-svg-champ', champSvgRaw);
 injectSvg('container-svg-usine', usineSvgRaw);
 injectSvg('container-svg-voiture', voitureSvgRaw);
 injectSvg('container-svg-velo', veloSvgRaw);
 injectSvg('container-svg-marc', marcSvgRaw);
 
-// Injection de Marc dans le header
 const marcHeaderContainer = injectSvg('header-marc', marcSvgRaw);
-
-// Petite animation flottante pour Marc dans le header
-if(marcHeaderContainer) {
-    gsap.to(marcHeaderContainer, { y: -15, duration: 2, repeat: -1, yoyo: true, ease: "sine.inOut" });
-}
 
 const pcAllumeContainer = injectSvg('container-svg-pcallume', pcallumeSvgRaw);
 injectSvg('container-svg-pceteint', pceteintSvgRaw);
 injectSvg('container-svg-pc2kg', pc2kgSvgRaw);
 const poidContainer = injectSvg('container-svg-588kg', poid588kgSvgRaw);
 
-// Injections Route
 injectSvg('road-1', routeSvgRaw, true);
 injectSvg('road-2', routeSvgRaw, true);
 
+injectSvg('container-svg-poubelle', poubelleSvgRaw);
+injectSvg('container-svg-feuille-seule', feuilleSvgRaw);
+const bouletteContainer = injectSvg('container-svg-boulette', bouletteSvgRaw);
+const marcPrinterContainer = injectSvg('container-svg-marc-printer-combined', marcsurimprimanteSvgRaw);
+injectSvg('container-svg-feuille-rouge', feuilleRougeSvgRaw);
+for (let i = 1; i <= 5; i++) {
+    injectSvg(`container-svg-feuille-${i}`, feuilleSvgRaw);
+}
+
+injectSvg('container-svg-radiateur-chaud', radiateurChaudSvgRaw);
+injectSvg('container-svg-marc-normal', marcSvgRaw);
+injectSvg('container-svg-radiateur-normal', radiateurSvgRaw);
+injectSvg('container-svg-marc-pull', marcPullSvgRaw);
+injectSvg('container-svg-bonhomme', bonhommeSvgRaw);
+injectSvg('icon-velo-fin', veloSvgRaw);
+injectSvg('icon-pc-fin', pceteintSvgRaw);
+injectSvg('icon-temp-fin', marcPullSvgRaw);
+injectSvg('icon-print-fin', feuilleSvgRaw);
+injectSvg('container-svg-marc-final', marcSvgRaw);
+
+
 // =========================================
-// 2. ANIMATION RESPIRATION (PC ALLUMÉ)
+// 2. ANIMATION HEADER - MARC FLOTTANT
 // =========================================
-if (pcAllumeContainer) {
-    const yellowParts = pcAllumeContainer.querySelectorAll('[fill="#ffbf02"]');
-    if (yellowParts.length > 0) {
-        gsap.to(yellowParts, {
-            opacity: 0.4,
-            duration: 1.5,
+if(marcHeaderContainer) {
+    gsap.to(marcHeaderContainer, { y: -15, duration: 2, repeat: -1, yoyo: true, ease: "sine.inOut" });
+}
+
+
+// =========================================
+// 3. ANIMATION CHAMP (NUAGES & PAYSANS)
+// =========================================
+if (champContainer) {
+    
+    const nuages = champContainer.querySelectorAll('[fill="#ffffff"], [fill="#FFFFFF"], [fill="#ededed"], [fill="#f2eade"]');
+    if (nuages.length > 0) {
+        gsap.to(nuages, {
+            x: 40, 
+            duration: 8, 
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut"
         });
     }
+
+    setTimeout(() => {
+        const elementsJaunes = champContainer.querySelectorAll('[fill="#ffbf02"]');
+        
+        elementsJaunes.forEach((el) => {
+            const bbox = el.getBBox();
+
+            if (bbox.width < 50) {
+                gsap.to(el, {
+                    y: -3,
+                    rotation: 5,
+                    transformOrigin: "center center",
+                    duration: 0.6,
+                    yoyo: true,
+                    repeat: -1,
+                    ease: "power1.inOut",
+                    delay: Math.random()
+                });
+            } else {
+                gsap.to(el, {
+                    rotation: 360,
+                    transformOrigin: "center center",
+                    duration: 120,
+                    repeat: -1,
+                    ease: "none"
+                });
+            }
+        });
+    }, 100);
 }
 
 
 // =========================================
-// 3. ANIMATION SCROLL HORIZONTAL
+// 4. ANIMATION USINE FUMÉE
 // =========================================
-let sections = gsap.utils.toArray(".h-scroll__panel");
-
-gsap.to(".h-scroll__container", {
-  xPercent: -50, 
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".h-scroll", 
-    pin: true, 
-    scrub: 1, 
-    snap: 1 / (sections.length - 1),
-    end: "+=2000", 
-  }
-});
+const containerUsine = document.getElementById('container-svg-usine');
+if (containerUsine) {
+    const fumeeCercles = containerUsine.querySelectorAll('circle');
+    fumeeCercles.forEach((cercle) => {
+        gsap.fromTo(cercle, { y: 0, x: 0, opacity: "random(0.1, 0.2)", scale: "random(0.2, 0.4)", transformOrigin: "50% 50%" }, { y: "random(-80, -120)", x: "random(-20, 20)", opacity: 0, scale: "random(1.2, 1.8)", duration: "random(2.5, 4.5)", delay: "random(0, 2)", repeat: -1, ease: "power1.out" });
+    });
+}
 
 
 // =========================================
-// 4. ANIMATIONS CLASSIQUES
+// 5. ANIMATION BÂTIMENT MODERNE (FENÊTRES)
 // =========================================
 const containerModerne = document.getElementById('container-svg-moderne');
 if (containerModerne) {
@@ -159,31 +202,85 @@ if (containerModerne) {
   }, 100); 
 }
 
+
+// =========================================
+// 6. ANIMATIONS SLIDES ET TIMELINE
+// =========================================
 document.querySelectorAll('.slide-from-left').forEach((el) => {
-  gsap.fromTo(el, { x: -150, opacity: 0 }, { x: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%", end: "bottom 15%", toggleActions: "play reverse play reverse" } });
+  gsap.fromTo(el, 
+    { x: -150, opacity: 0 }, 
+    { 
+        x: 0, opacity: 1, duration: 1, ease: "power3.out", 
+        scrollTrigger: { 
+            trigger: el, 
+            start: "top 85%", 
+            toggleActions: "play none none reverse" 
+        } 
+    }
+  );
 });
+
 document.querySelectorAll('.slide-from-right').forEach((el) => {
-  gsap.fromTo(el, { x: 150, opacity: 0 }, { x: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%", end: "bottom 15%", toggleActions: "play reverse play reverse" } });
+  gsap.fromTo(el, 
+    { x: 150, opacity: 0 }, 
+    { 
+        x: 0, opacity: 1, duration: 1, ease: "power3.out", 
+        scrollTrigger: { 
+            trigger: el, 
+            start: "top 85%", 
+            toggleActions: "play none none reverse" 
+        } 
+    }
+  );
 });
+
 gsap.utils.toArray('.timeline__marker').forEach(marker => {
-    gsap.from(marker, { scale: 0, rotation: -180, duration: 0.8, ease: "back.out(1.7)", scrollTrigger: { trigger: marker, start: "top 85%", end: "bottom 15%", toggleActions: "play reverse play reverse" } });
+    gsap.from(marker, { 
+        scale: 0, rotation: -180, duration: 0.8, ease: "back.out(1.7)", 
+        scrollTrigger: { 
+            trigger: marker, 
+            start: "top 85%", 
+            toggleActions: "play none none reverse" 
+        } 
+    });
 });
 
-const containerUsine = document.getElementById('container-svg-usine');
-if (containerUsine) {
-    const fumeeCercles = containerUsine.querySelectorAll('circle');
-    fumeeCercles.forEach((cercle) => {
-        gsap.fromTo(cercle, { y: 0, x: 0, opacity: "random(0.1, 0.2)", scale: "random(0.2, 0.4)", transformOrigin: "50% 50%" }, { y: "random(-80, -120)", x: "random(-20, 20)", opacity: 0, scale: "random(1.2, 1.8)", duration: "random(2.5, 4.5)", delay: "random(0, 2)", repeat: -1, ease: "power1.out" });
+gsap.utils.toArray('.slide-up').forEach(el => {
+    gsap.from(el, { 
+        y: 50, opacity: 0, duration: 0.8, ease: "power2.out", 
+        scrollTrigger: { 
+            trigger: el, 
+            start: "top 90%", 
+            toggleActions: "play none none reverse" 
+        } 
     });
-}
+});
 
+
+// =========================================
+// 7. ANIMATION SCROLL HORIZONTAL
+// =========================================
+let sections = gsap.utils.toArray(".h-scroll__panel");
+
+gsap.to(".h-scroll__container", {
+  xPercent: -50, 
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".h-scroll", 
+    pin: true, 
+    scrub: 1, 
+    snap: 1 / (sections.length - 1),
+    end: "+=2000", 
+  }
+});
+
+
+// =========================================
+// 8. ANIMATIONS TRANSPORT
+// =========================================
 gsap.to(".transport__road", { x: "-50%", duration: 3, ease: "none", repeat: -1 });
 gsap.fromTo("#container-svg-voiture", { y: 0 }, { y: 1.5, duration: 0.1, repeat: -1, yoyo: true, ease: "linear" });
 gsap.fromTo("#container-svg-velo", { y: 0, rotation: 0 }, { y: -2, rotation: 1, duration: 0.25, repeat: -1, yoyo: true, ease: "sine.inOut" });
-
-gsap.utils.toArray('.slide-up').forEach(el => {
-    gsap.from(el, { y: 50, opacity: 0, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play reverse play reverse" } });
-});
 
 const marcContainer = document.getElementById('container-svg-marc');
 if (marcContainer) {
@@ -192,7 +289,24 @@ if (marcContainer) {
 
 
 // =========================================
-// 5. ANIMATION ORDINATEUR (POIDS)
+// 9. ANIMATION RESPIRATION (PC ALLUMÉ)
+// =========================================
+if (pcAllumeContainer) {
+    const yellowParts = pcAllumeContainer.querySelectorAll('[fill="#ffbf02"]');
+    if (yellowParts.length > 0) {
+        gsap.to(yellowParts, {
+            opacity: 0.4,
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+}
+
+
+// =========================================
+// 10. ANIMATION ORDINATEUR (POIDS)
 // =========================================
 if (poidContainer) {
     const sectionOrdinateur = document.querySelector('.computer');
@@ -202,7 +316,7 @@ if (poidContainer) {
             trigger: ".computer", 
             start: "top 40%", 
             toggleActions: "play none none reverse",
-            markers: true 
+            markers: false
         }
     });
 
@@ -225,21 +339,14 @@ if (poidContainer) {
     });
 }
 
-// =========================================
-// 6. INJECTIONS SECTION IMPRESSION & ANIMATIONS
-// =========================================
-injectSvg('container-svg-poubelle', poubelleSvgRaw);
-injectSvg('container-svg-feuille-seule', feuilleSvgRaw);
-const bouletteContainer = injectSvg('container-svg-boulette', bouletteSvgRaw);
-const marcPrinterContainer = injectSvg('container-svg-marc-printer-combined', marcsurimprimanteSvgRaw);
 
-
-// FONCTION POUR LANCER LA BOULETTE (COURBE)
+// =========================================
+// 11. ANIMATION IMPRESSION (BOULETTE)
+// =========================================
 function throwPaperBall() {
     const boulette = document.getElementById('container-svg-boulette');
     if (!boulette) return;
 
-    // Réinitialisation
     gsap.set(boulette, { x: 40, y: 0, opacity: 1, scale: 1, rotation: 0 });
 
     const tlThrow = gsap.timeline({
@@ -248,14 +355,12 @@ function throwPaperBall() {
         }
     });
 
-    // 1. Déplacement horizontal
     tlThrow.to(boulette, {
         x: -320, 
         duration: 0.6,
         ease: "power1.in"
     }, 0);
 
-    // 2. Trajectoire courbe
     tlThrow.to(boulette, {
         y: -110, 
         duration: 0.3,
@@ -267,57 +372,43 @@ function throwPaperBall() {
         ease: "circ.in"
     }, 0.3);
 
-    // 3. Rotation
     tlThrow.to(boulette, {
         rotation: -720,
         duration: 0.6,
         ease: "none"
     }, 0);
 
-    // 4. Disparition
     tlThrow.to(boulette, {
         opacity: 0,
         duration: 0.1
     }, 0.55);
 }
 
-
-// Animation : SEULEMENT MARC saute (#Calque_12)
 if (marcPrinterContainer) {
     const marcBeaver = marcPrinterContainer.querySelector('#Calque_12');
     
     if (marcBeaver) {
         const tlJump = gsap.timeline({ repeat: -1 });
 
-        // Saut vers le haut - RALENTI
         tlJump.to(marcBeaver, {
             y: -25,
-            duration: 0.6, // Changé de 0.35 à 0.6
+            duration: 0.6, 
             ease: "power1.out"
         });
 
-        // Retombée vers le bas - RALENTI
         tlJump.to(marcBeaver, {
             y: 0,
-            duration: 0.6, // Changé de 0.35 à 0.6
+            duration: 0.6, 
             ease: "power1.in"
         });
 
-        // Lancement de la boulette synchronisé
         tlJump.call(throwPaperBall);
     }
 }
 
 
-// Injection de la grille de papiers (1 rouge, 5 blanches)
-injectSvg('container-svg-feuille-rouge', feuilleRougeSvgRaw);
-for (let i = 1; i <= 5; i++) {
-    injectSvg(`container-svg-feuille-${i}`, feuilleSvgRaw);
-}
-
-
 // =========================================
-// 7. ANIMATION FEUILLES (SORTIE DE DERRIÈRE)
+// 12. ANIMATION FEUILLES (SORTIE DE DERRIÈRE)
 // =========================================
 const paperGrid = document.querySelector('.paper-grid');
 const redPaper = document.getElementById('container-svg-feuille-rouge');
@@ -333,7 +424,7 @@ if (paperGrid && redPaper && whitePapers.length > 0) {
     const tlPapers = gsap.timeline({
         scrollTrigger: {
             trigger: ".printing__footer", 
-            start: "top 85%",             
+            start: "top 85%",            
             toggleActions: "play none none reverse" 
         }
     });
@@ -363,35 +454,64 @@ if (paperGrid && redPaper && whitePapers.length > 0) {
     );
 }
 
+
 // =========================================
-// 8. INJECTIONS SECTION CONSOMMATION & ANIMATION EAU
+// 13. ANIMATION FUMÉE RADIATEUR CHAUD
 // =========================================
+const hotRadiatorVisual = document.querySelector('.consumption__actions .action-card:first-child .action-card__visual');
 
-// Radiateur Chaud + Marc Normal (Gauche)
-injectSvg('container-svg-radiateur-chaud', radiateurChaudSvgRaw);
-injectSvg('container-svg-marc-normal', marcSvgRaw);
+if (hotRadiatorVisual) {
+    const smokeWrapper = document.createElement('div');
+    smokeWrapper.classList.add('smoke-wrapper');
 
-// Radiateur Normal + Marc Pull (Droite)
-injectSvg('container-svg-radiateur-normal', radiateurSvgRaw);
-injectSvg('container-svg-marc-pull', marcPullSvgRaw);
+    const numParticles = 12;
+    for (let i = 0; i < numParticles; i++) {
+        const particle = document.createElement('span');
+        particle.classList.add('smoke-particle');
+        smokeWrapper.appendChild(particle);
+    }
 
-// Bonhomme
-injectSvg('container-svg-bonhomme', bonhommeSvgRaw);
+    hotRadiatorVisual.appendChild(smokeWrapper);
 
-// Injection et Animation de la grille de gouttes d'eau
+    const particles = smokeWrapper.querySelectorAll('.smoke-particle');
+
+    particles.forEach(particle => {
+        gsap.set(particle, { xPercent: -50, y: 0, scale: 0.5, opacity: 0 });
+
+        const tl = gsap.timeline({ repeat: -1, delay: gsap.utils.random(0, 2) });
+
+        tl.to(particle, {
+            duration: gsap.utils.random(2, 4),
+            y: gsap.utils.random(-100, -150), 
+            x: gsap.utils.random(-30, 30),    
+            scale: gsap.utils.random(2, 3.5), 
+            opacity: gsap.utils.random(0.4, 0.8), 
+            ease: "power1.out"
+        }, 0);
+
+        tl.to(particle, {
+            duration: 1,
+            opacity: 0,
+            ease: "power1.in"
+        }, ">-1"); 
+    });
+}
+
+
+// =========================================
+// 14. ANIMATION EAU (GRILLE DE GOUTTES)
+// =========================================
 const waterGridContainer = document.getElementById('water-grid-container');
 if (waterGridContainer) {
     const numCols = 5;
     const numRows = 7;
-    const totalDrops = numCols * numRows; // 35
+    const totalDrops = numCols * numRows;
 
-    // 1. Génération des gouttes
     for (let i = 0; i < totalDrops; i++) {
         const dropSpan = document.createElement('span');
         dropSpan.classList.add('water-grid__drop');
         dropSpan.innerHTML = gouteSvgRaw;
         
-        // Optimisation SVG
         const svgEl = dropSpan.querySelector('svg');
         if(svgEl) {
             svgEl.classList.add('illustration-svg');
@@ -401,7 +521,6 @@ if (waterGridContainer) {
         waterGridContainer.appendChild(dropSpan);
     }
 
-    // 2. Animation GSAP en escalier (Sens normal : Haut-Gauche vers Bas-Droite)
     const drops = waterGridContainer.querySelectorAll('.water-grid__drop');
 
     gsap.from(drops, {
@@ -417,59 +536,40 @@ if (waterGridContainer) {
         ease: "back.out(1.7)", 
         stagger: {
             grid: [numRows, numCols], 
-            from: 0,                  // CHANGEMENT ICI : 0 = Index de départ (Haut-Gauche)
+            from: 0,                 
             amount: 1.5               
         }
     });
 }
 
+
 // =========================================
-// 9. ANIMATION FUMÉE RADIATEUR CHAUD
+// 15. ANIMATION CHECKLIST
 // =========================================
+gsap.from(".checklist__check", {
+  scale: 0,
+  rotation: -360,
+  duration: 0.5,
+  stagger: 0.2,
+  ease: "back.out(1.7)",
+  scrollTrigger: {
+    trigger: ".checklist",
+    start: "top 80%",
+    toggleActions: "play none none reverse"
+  }
+});
 
-// On cible le conteneur visuel du premier radiateur (le chaud)
-const hotRadiatorVisual = document.querySelector('.consumption__actions .action-card:first-child .action-card__visual');
 
-if (hotRadiatorVisual) {
-    // Création du conteneur de fumée
-    const smokeWrapper = document.createElement('div');
-    smokeWrapper.classList.add('smoke-wrapper');
-
-    // On génère X particules de fumée
-    const numParticles = 12;
-    for (let i = 0; i < numParticles; i++) {
-        const particle = document.createElement('span');
-        particle.classList.add('smoke-particle');
-        smokeWrapper.appendChild(particle);
+// =========================================
+// 16. ANIMATION BARRE DE PROGRESSION
+// =========================================
+gsap.to(".progress-line__fill", {
+    height: "100%",
+    ease: "none",
+    scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0
     }
-
-    // On insère la fumée dans le visuel
-    hotRadiatorVisual.appendChild(smokeWrapper);
-
-    // Animation GSAP des particules
-    const particles = smokeWrapper.querySelectorAll('.smoke-particle');
-
-    particles.forEach(particle => {
-        // Reset initial
-        gsap.set(particle, { xPercent: -50, y: 0, scale: 0.5, opacity: 0 });
-
-        // Création d'une timeline infinie pour chaque particule avec des valeurs aléatoires
-        const tl = gsap.timeline({ repeat: -1, delay: gsap.utils.random(0, 2) });
-
-        tl.to(particle, {
-            duration: gsap.utils.random(2, 4),
-            y: gsap.utils.random(-100, -150), // Monte entre 100px et 150px vers le haut
-            x: gsap.utils.random(-30, 30),    // Dérive légère à gauche ou droite
-            scale: gsap.utils.random(2, 3.5), // Grossit
-            opacity: gsap.utils.random(0.4, 0.8), // Devient visible...
-            ease: "power1.out"
-        }, 0);
-
-        // Disparition progressive à la fin du mouvement
-        tl.to(particle, {
-            duration: 1,
-            opacity: 0,
-            ease: "power1.in"
-        }, ">-1"); // Commence 1 seconde avant la fin de l'anim précédente
-    });
-}
+});
