@@ -64,7 +64,7 @@ mm.add("(min-width: 769px)", () => {
         }, 100);
     }
 
-    // 4. animation usine fumée
+    // animation usine fumée
 
     if (containerUsine) {
         const fumeeCercles = containerUsine.querySelectorAll('circle');
@@ -163,6 +163,23 @@ mm.add("(min-width: 769px)", () => {
         });
         
         tlPoids.to("#container-svg-588kg", { y: -20, duration: 0.1, ease: "power1.out", yoyo: true, repeat: 1 });
+    }
+
+// Animation des jauges (72% et 2.3%)
+    if (document.querySelector('.stats__gauge')) {
+        gsap.from(".stats__gauge-fill", {
+            scaleX: 0,
+            duration: 1.5,
+            delay: 0.5,
+            ease: "power2.out",
+            transformOrigin: "left center",
+            stagger: 0.3,
+            scrollTrigger: {
+                trigger: ".stats",
+                start: "top 80%",
+                toggleActions: "play none none reverse"
+            }
+        });
     }
 
     // animation impression

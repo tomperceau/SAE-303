@@ -1,35 +1,41 @@
 
 body {
-    background-color: var(--bg-color); 
+    background-color: var(--bg-color);
     color: var(--text-main);
-    font-family: var(--font-main); 
-    font-weight: 300; 
-    font-size: 1.3rem; 
-    overflow-x: hidden; 
+    font-family: var(--font-main);
+    font-weight: 300;
+    font-size: 1.3rem;
+    overflow-x: hidden;
     line-height: 1.6;
     -ms-overflow-style: none;
 }
-
 
 .u-text-rose {
     color: var(--rose-marker);
     font-weight: 800;
     font-size: 1.4em;
 }
+
 .u-text-green {
     color: var(--vert-eco);
     font-weight: 800;
     font-size: 1.4em;
 }
 
+.section-title {
+    max-width: 68.75rem;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: var(--jaune-accent);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 5rem;
+    text-transform: uppercase;
+}
 
-
-
-
-
-/* Barre de progression latérale */
-
-
+/*  progress bar  */
 .progress-timeline {
     position: fixed;
     top: 50%;
@@ -69,8 +75,7 @@ body {
 }
 
 
-/* navbar */
-
+/*  navbar  */
 .navbar {
     position: absolute;
     top: 1.875rem;
@@ -80,10 +85,10 @@ body {
     background-color: var(--violet-badge);
     padding: 1.2rem 3.5rem;
     border-radius: 3.125rem;
-    box-shadow: 0 0.3125rem 1.25rem rgba(0,0,0,0.3);
+    box-shadow: 0 0.3125rem 1.25rem rgba(0, 0, 0, 0.3);
     width: max-content;
     max-width: 90%;
-    border: 0.0625rem solid rgba(255,255,255,0.1);
+    border: 0.0625rem solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar__list {
@@ -109,32 +114,7 @@ body {
     color: var(--jaune-accent);
 }
 
-@media (max-width: 48rem) {
-    .navbar {
-        position: fixed;
-        top: auto;
-        bottom: 1.25rem;
-        width: 90%;
-        overflow-x: auto;
-        justify-content: center;
-        padding: 1rem;
-    }
-    
-    .navbar__list {
-        gap: 1.5rem;
-        white-space: nowrap;
-    }
-    
-    .navbar__link {
-        font-size: 0.8rem;
-    }
-    
-    .progress-timeline { display: none; }
-}
-
-
-/* Header */
-
+/*  header  */
 .header {
     text-align: center;
     padding: 0 1rem;
@@ -204,8 +184,7 @@ body {
 }
 
 
-/* Timeline des époques */
-
+/*  Timeline  */
 .timeline {
     position: relative;
     max-width: 62.5rem;
@@ -256,6 +235,7 @@ body {
     margin: 0 auto;
     border-radius: 0.625rem;
     background-color: transparent;
+    overflow: visible; 
 }
 
 .timeline__title {
@@ -286,7 +266,7 @@ body {
     border: 0.625rem solid;
     background-color: var(--bg-color);
     z-index: 2;
-    box-shadow: 0 0 0.9375rem rgba(0,0,0,0.3);
+    box-shadow: 0 0 0.9375rem rgba(0, 0, 0, 0.3);
 }
 
 .timeline__row--rose .timeline__marker {
@@ -319,8 +299,7 @@ body {
 }
 
 
-/* scroll horizontal */
-
+/*  scroll horizontal  */
 .h-scroll {
     width: 100%;
     height: 100vh;
@@ -366,9 +345,6 @@ body {
     text-align: center;
     padding: 2rem;
 }
-
-
-/* timeline époque moderne */
 
 .modern-timeline {
     display: flex;
@@ -416,7 +392,6 @@ body {
     display: block;
 }
 
-
 .transition-box__title {
     font-size: 4rem;
     font-weight: 800;
@@ -438,23 +413,7 @@ body {
 }
 
 
-
-.section-title {
-    max-width: 68.75rem;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    color: var(--jaune-accent);
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 5rem;
-    text-transform: uppercase;
-}
-
-
-/* transport */
-
+/*  Trajet  */
 .transport {
     padding: 2rem 0;
     min-height: 100vh;
@@ -536,19 +495,24 @@ body {
     z-index: 5;
 }
 
-
+/* Stats (Voiture & Vélo) */
 
 .stats {
-    max-width: 68.75rem;
+
+    max-width: 63rem; 
     width: 90%;
     margin: 0 auto 2rem auto;
     display: flex;
     justify-content: space-between;
-    text-align: center;
+    align-items: flex-start;
 }
 
 .stats__box {
-    width: 45%;
+    width: 48%;
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
 
 .stats__title {
@@ -565,8 +529,36 @@ body {
     color: var(--vert-eco);
 }
 
+.stats__gauge {
+    width: 100%;
+    margin: 1.5rem 0 0 0;
+    padding: 0;
+    overflow: visible; 
+}
+
+.stats__gauge svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+@media (max-width: 900px) {
+    .stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    .stats__box {
+        width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+}
 
 
+/*  Badge  */
 .info-card {
     max-width: 63rem;
     width: 90%;
@@ -577,7 +569,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 0.625rem 1.25rem rgba(0,0,0,0.3);
+    box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.3);
     color: var(--text-main);
     box-sizing: border-box;
 }
@@ -635,8 +627,7 @@ body {
 }
 
 
-/* ordinateur */
-
+/*  Ordinateur  */
 .computer {
     padding: 2rem 0;
     min-height: 100vh;
@@ -696,9 +687,7 @@ body {
     margin-bottom: 0;
 }
 
-
- /*poids */
-
+/* Poids ordinateur */
 .weight-comp {
     width: 45%;
     flex: 0 0 45%;
@@ -745,8 +734,7 @@ body {
 }
 
 
-/* imprression */
-
+/*  Impression  */
 .printing {
     padding: 4rem 0;
     min-height: 100vh;
@@ -861,9 +849,6 @@ body {
     text-align: left;
 }
 
-
-/* grid de papier */
-
 .paper-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -878,9 +863,13 @@ body {
     display: block;
 }
 
+.printing__icon--marc-printer svg,
+.timeline__illustration--factory svg {
+    overflow: visible;
+}
 
-/* consommation */
 
+/*  CONSOMMATION & EAU  */
 .consumption {
     padding: 4rem 0;
     min-height: 100vh;
@@ -901,8 +890,6 @@ body {
     list-style: none;
     gap: 2rem;
 }
-
-
 
 .action-card {
     width: 45%;
@@ -946,9 +933,6 @@ body {
 .action-card__desc {
     font-size: 1.2rem;
 }
-
-
-/* eau */
 
 .water-usage {
     display: flex;
@@ -1001,9 +985,6 @@ body {
     margin-bottom: 0.5rem;
 }
 
-
-/* grid d'eau */
-
 .water-grid__drop svg {
     width: 100%;
     height: auto;
@@ -1011,8 +992,7 @@ body {
 }
 
 
-/* conclusion */
-
+/*  CONCLUSION  */
 .conclusion {
     padding: 6rem 0 4rem;
     min-height: 80vh;
@@ -1040,7 +1020,7 @@ body {
     padding: 3rem;
     border-radius: 1.25rem;
     text-align: center;
-    box-shadow: 0 0.9375rem 1.875rem rgba(0,0,0,0.2);
+    box-shadow: 0 0.9375rem 1.875rem rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
@@ -1071,11 +1051,8 @@ body {
     width: auto;
     display: block;
     margin: 0 auto;
-    filter: drop-shadow(0 0.625rem 0.625rem rgba(0,0,0,0.3));
+    filter: drop-shadow(0 0.625rem 0.625rem rgba(0, 0, 0, 0.3));
 }
-
-
-/* checklist */
 
 .checklist {
     flex: 1;
@@ -1134,18 +1111,31 @@ body {
 }
 
 
+/*  RESPONSIVE  */
+@media (max-width: 48rem) {
+    .navbar {
+        position: fixed;
+        top: auto;
+        bottom: 1.25rem;
+        width: 90%;
+        overflow-x: auto;
+        justify-content: center;
+        padding: 1rem;
+    }
 
+    .navbar__list {
+        gap: 1.5rem;
+        white-space: nowrap;
+    }
 
-/* svg overflow */
+    .navbar__link {
+        font-size: 0.8rem;
+    }
 
-.printing__icon--marc-printer svg,
-.timeline__illustration--factory svg {
-    overflow: visible;
+    .progress-timeline {
+        display: none;
+    }
 }
-
-
-
-/* responsive */
 
 @media (max-width: 900px) {
 
@@ -1168,7 +1158,7 @@ body {
         font-size: 2.5rem;
         line-height: 1.2;
     }
-    
+
     .header__animation {
         width: 15.625rem !important;
         height: 15.625rem !important;
@@ -1180,7 +1170,7 @@ body {
         z-index: 0;
     }
 
-    .timeline__row, 
+    .timeline__row,
     .timeline__row--reverse {
         display: flex;
         flex-direction: column !important;
@@ -1220,7 +1210,7 @@ body {
         margin-top: 2rem;
         z-index: 2;
     }
-    
+
     .timeline__content--img svg {
         max-height: 250px;
         width: auto;
@@ -1256,13 +1246,13 @@ body {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .modern-timeline__text {
         width: 100%;
         text-align: center;
         margin-bottom: 2rem;
     }
-    
+
     .modern-timeline__img {
         width: 80%;
         margin: 0 auto;
@@ -1271,25 +1261,33 @@ body {
     .transport__visual {
         height: 6rem;
     }
-    
-    .transport__car { width: 8rem; }
-    .transport__bike { width: 5rem; }
+
+    .transport__car {
+        width: 8rem;
+    }
+
+    .transport__bike {
+        width: 5rem;
+    }
 
     .stats {
         flex-direction: column;
+        align-items: center;
         gap: 2rem;
     }
 
     .stats__box {
         width: 100%;
+        align-items: center;
+        text-align: center;
     }
-    
+
     .info-card {
         flex-direction: column;
         text-align: center;
         padding: 1.5rem;
     }
-    
+
     .info-card__mascot {
         margin: 1.5rem 0 0 0;
     }
@@ -1298,7 +1296,7 @@ body {
         flex-direction: column;
         gap: 2rem;
     }
-    
+
     .computer__grid li {
         width: 100%;
     }
@@ -1316,7 +1314,7 @@ body {
     .computer__bottom .info-card--dark {
         width: 100%;
     }
-    
+
     .weight-comp__equals {
         transform: rotate(90deg);
         margin: 0;
@@ -1327,11 +1325,11 @@ body {
         align-items: center;
         gap: 3rem;
     }
-    
+
     .printing__col {
         width: 100%;
     }
-    
+
     .printing__col--center {
         order: -1;
         margin-bottom: 2rem;
@@ -1342,7 +1340,7 @@ body {
         gap: 2rem;
         text-align: center;
     }
-    
+
     .printing__footer-text {
         text-align: center;
     }
@@ -1351,7 +1349,7 @@ body {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .action-card {
         width: 100%;
         max-width: 100%;
@@ -1361,7 +1359,7 @@ body {
         flex-direction: column;
         gap: 1rem;
     }
-    
+
     .water-usage__divider {
         width: 150px;
         height: 4px;
@@ -1371,16 +1369,17 @@ body {
     .conclusion__layout {
         flex-direction: column;
     }
-    
-    .conclusion__card, .checklist {
+
+    .conclusion__card,
+    .checklist {
         width: 100%;
         min-width: auto;
     }
-    
+
     .checklist {
         align-items: center;
     }
-    
+
     .checklist__item {
         width: 100%;
         justify-content: space-between;
